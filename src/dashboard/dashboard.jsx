@@ -5,7 +5,6 @@ import Content from '../common/template/content';
 import ValueBox from '../common/widget/valueBox';
 import Row from '../common/layout/row';
 
-
 class Dashboard extends Component {
     render() {
         return (
