@@ -7,6 +7,7 @@ import Tabs from '../common/tab/tabs';
 import TabsHeader from '../common/tab/tabsHeader';
 import TabsContent from '../common/tab/tabsContent';
 import TabHeader from '../common/tab/tabHeader';
+import TabContent from '../common/tab/tabContent';
 
 export class Categories extends Component {
     render() {
@@ -22,7 +23,18 @@ export class Categories extends Component {
                             <TabHeader label='excluir' icon='trash-o' target='tabDelete'/>
                         </TabsHeader>
                         <TabsContent>
-                            
+                            <TabContent id='tabList'>
+                                Lista
+                            </TabContent>
+                            <TabContent id='tabCreate'>
+                                Criar
+                            </TabContent>
+                            <TabContent id='tabUpdate'>
+                                Atualizar
+                            </TabContent>
+                            <TabContent id='tabDelete'>
+                                Deletar
+                            </TabContent>
                         </TabsContent>
                     </Tabs>
                 </Content>
