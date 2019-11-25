@@ -8,8 +8,16 @@ import TabsHeader from '../common/tab/tabsHeader';
 import TabsContent from '../common/tab/tabsContent';
 import TabHeader from '../common/tab/tabHeader';
 import TabContent from '../common/tab/tabContent';
+import { selectTab } from '../common/tab/tabActions';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 export class Categories extends Component {
+
+    componentWillMount() {
+        this.props.selectTab('tabList');
+    }
+
     render() {
         return (
             <div>
@@ -43,4 +51,5 @@ export class Categories extends Component {
     }
 }
 
-export default Categories
+const mapDispatchToProps = dispatch => bindActionCreators({selectTab}, dispatch);
+export default connect(null, mapDispatchToProps)(Categories);
