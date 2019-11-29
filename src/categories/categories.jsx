@@ -11,6 +11,7 @@ import TabContent from '../common/tab/tabContent';
 import { selectTab, showTabs } from '../common/tab/tabActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import CategoriesList from './categoriesList';
 
 export class Categories extends Component {
 
@@ -33,7 +34,7 @@ export class Categories extends Component {
                         </TabsHeader>
                         <TabsContent>
                             <TabContent id='tabList'>
-                                Lista
+                                <CategoriesList/>
                             </TabContent>
                             <TabContent id='tabCreate'>
                                 Criar
