@@ -1,6 +1,24 @@
 import React, { Component } from 'react';
+import { getList } from './categoriesActions';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 export class CategoriesList extends Component {
+
+    componentWillMount() {
+        this.props.getList();
+    }
+
+    renderRows() {
+        const list = this.props.list || [];
+
+        return list.map(category => (
+            <tr key={category.id}>
+                <td>{category.name}</td>
+            </tr>
+        ));
+    }
+
     render() {
         return (
             <div>
@@ -11,7 +29,7 @@ export class CategoriesList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        
+                        {this.renderRows()}
                     </tbody>
                 </table>
             </div>
@@ -19,4 +37,6 @@ export class CategoriesList extends Component {
     }
 }
 
-export default CategoriesList
+const mapStateToProps = state => ({ list: state.categories.list });
+const mapDispatchToProps = dispatch => bindActionCreators({ getList }, dispatch);
+export default connect(mapStateToProps, mapDispatchToProps)(CategoriesList);

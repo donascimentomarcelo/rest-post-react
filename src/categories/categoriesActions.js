@@ -5,6 +5,6 @@ export function getList() {
     const req = Axios.get(`${api_url}/categories`);
     return {
         type: 'CATEGORIES_FETCHED',
-        payload: request
+        payload: req
     }
 }
