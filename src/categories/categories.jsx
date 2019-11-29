@@ -12,6 +12,7 @@ import { selectTab, showTabs } from '../common/tab/tabActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import CategoriesList from './categoriesList';
+import CategoriesForm from './categoriesForm';
 
 export class Categories extends Component {
 
@@ -37,7 +38,7 @@ export class Categories extends Component {
                                 <CategoriesList/>
                             </TabContent>
                             <TabContent id='tabCreate'>
-                                Criar
+                                <CategoriesForm/>
                             </TabContent>
                             <TabContent id='tabUpdate'>
                                 Atualizar
