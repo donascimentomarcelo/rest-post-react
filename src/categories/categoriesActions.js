@@ -8,3 +8,10 @@ export function getList() {
         payload: req
     }
 }
+
+export function create(values) {
+    Axios.post(`${api_url}/categories`, values);
+    return {
+        type: 'TEMP'
+    }
+}
