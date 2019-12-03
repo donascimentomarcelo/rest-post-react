@@ -1,4 +1,6 @@
 import Axios from "axios";
+import toastr from 'react-redux-toastr';
+
 const api_url = 'http://localhost:8080/api';
 
 export function getList() {
@@ -10,7 +12,13 @@ export function getList() {
 }
 
 export function create(values) {
-    Axios.post(`${api_url}/categories`, values);
+    Axios.post(`${api_url}/categories`, values)
+        .then(resp => {
+            toastr.success('Sucesso!','Operação realizada com sucesso!')
+        })
+        .catch(error => {
+            console.log(error);
+        })
     return {
         type: 'TEMP'
     }
