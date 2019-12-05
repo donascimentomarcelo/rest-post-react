@@ -42,7 +42,7 @@ export class Categories extends Component {
                                 <CategoriesForm onSubmit={this.props.create}/>
                             </TabContent>
                             <TabContent id='tabUpdate'>
-                                Atualizar
+                                <CategoriesForm />
                             </TabContent>
                             <TabContent id='tabDelete'>
                                 Deletar

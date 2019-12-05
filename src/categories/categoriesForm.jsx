@@ -29,4 +29,4 @@ export class CategoriesForm extends Component {
     }
 }
 
-export default reduxForm({form: 'categoriesForm'})(CategoriesForm)
+export default reduxForm({form: 'categoriesForm', destroyOnUnmount: false})(CategoriesForm)
