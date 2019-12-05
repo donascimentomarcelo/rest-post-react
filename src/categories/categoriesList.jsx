@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getList } from './categoriesActions';
+import { getList, showUpdate } from './categoriesActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -15,6 +15,11 @@ export class CategoriesList extends Component {
         return list.map(category => (
             <tr key={category.id}>
                 <td>{category.name}</td>
+                <td>
+                    <button className="btn btn-warning" onClick={() => this.props.showUpdate(category)}>
+                        <i className="fa fa-pencil"></i>
+                    </button>
+                </td>
             </tr>
         ));
     }
@@ -26,6 +31,7 @@ export class CategoriesList extends Component {
                     <thead>
                         <tr>
                             <th>Nome</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,5 +44,5 @@ export class CategoriesList extends Component {
 }
 
 const mapStateToProps = state => ({ list: state.categories.list });
-const mapDispatchToProps = dispatch => bindActionCreators({ getList }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ getList, showUpdate }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(CategoriesList);
