@@ -7,7 +7,7 @@ import { init } from './categoriesActions';
 
 export class CategoriesForm extends Component {
     render() {
-        const { handleSubmit } = this.props;
+        const { handleSubmit, readOnly } = this.props;
         return (
             <form role='form' onSubmit={handleSubmit}>
                 <div className="box-body">
@@ -16,13 +16,15 @@ export class CategoriesForm extends Component {
                         component={labelAndinput}
                         label="Nome"
                         cols="12 6"
-                        placeholder="Informe o nome"/>
+                        placeholder="Informe o nome"
+                        readOnly={readOnly}/>
                     <Field 
                         name='description' 
                         component={labelAndinput}
                         label="Descrição"
                         cols="12 6"
-                        placeholder="Informe a descrição"/>
+                        placeholder="Informe a descrição"
+                        readOnly={readOnly}/>
                 </div>
                 <div className="box-footer">
                     <button type="submit" className="btn btn-primary">Enviar</button>

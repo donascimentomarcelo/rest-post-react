@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getList, showUpdate } from './categoriesActions';
+import { getList, showUpdate, showDelete } from './categoriesActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -18,6 +18,9 @@ export class CategoriesList extends Component {
                 <td>
                     <button className="btn btn-warning" onClick={() => this.props.showUpdate(category)}>
                         <i className="fa fa-pencil"></i>
+                    </button>
+                    <button className="btn btn-danger" onClick={() => this.props.showDelete(category)}>
+                        <i className="fa fa-trash"></i>
                     </button>
                 </td>
             </tr>
@@ -44,5 +47,5 @@ export class CategoriesList extends Component {
 }
 
 const mapStateToProps = state => ({ list: state.categories.list });
-const mapDispatchToProps = dispatch => bindActionCreators({ getList, showUpdate }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ getList, showUpdate, showDelete }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(CategoriesList);

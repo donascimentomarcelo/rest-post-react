@@ -15,21 +15,21 @@ export function getList() {
 }
 
 export function create(values) {
-    return dispatch => {
-        Axios.post(`${api_url}/categories`, values)
-            .then(resp => {
-                toastr.success('Sucesso!','Operação realizada com sucesso!')
-                dispatch(init())
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }
+    return submit(values, 'post');
 }
 
 export function update(values) {
+    return submit(values, 'put');
+}
+
+export function remove(values) {
+    return submit(values, 'delete');
+}
+
+function submit(values, method) {
+    const id = values.id ? values.id : '';
     return dispatch => {
-        Axios.put(`${api_url}/categories/${values.id}`, values)
+        Axios[method](`${api_url}/categories/${id}`, values)
             .then(() => {
                 toastr.success('Sucesso!','Operação realizada com sucesso!')
                 dispatch(init())
@@ -42,6 +42,14 @@ export function showUpdate(category) {
     return [
         showTabs('tabUpdate'),
         selectTab('tabUpdate'),
+        initialize('categoriesForm', category)
+    ];
+}
+
+export function showDelete(category) {
+    return [
+        showTabs('tabDelete'),
+        selectTab('tabDelete'),
         initialize('categoriesForm', category)
     ];
 }
