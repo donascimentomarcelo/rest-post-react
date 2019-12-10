@@ -13,7 +13,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import CategoriesList from './categoriesList';
 import CategoriesForm from './categoriesForm';
-import { create } from './categoriesActions';
+import { create, update } from './categoriesActions';
 
 export class Categories extends Component {
 
@@ -42,7 +42,7 @@ export class Categories extends Component {
                                 <CategoriesForm onSubmit={this.props.create}/>
                             </TabContent>
                             <TabContent id='tabUpdate'>
-                                <CategoriesForm />
+                                <CategoriesForm  onSubmit={this.props.update}/>
                             </TabContent>
                             <TabContent id='tabDelete'>
                                 Deletar
@@ -55,5 +55,5 @@ export class Categories extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({selectTab, showTabs, create}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({selectTab, showTabs, create, update}, dispatch);
 export default connect(null, mapDispatchToProps)(Categories);

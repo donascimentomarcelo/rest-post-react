@@ -27,6 +27,17 @@ export function create(values) {
     }
 }
 
+export function update(values) {
+    return dispatch => {
+        Axios.put(`${api_url}/categories/${values.id}`, values)
+            .then(() => {
+                toastr.success('Sucesso!','Operação realizada com sucesso!')
+                dispatch(init())
+            })
+            .catch(error => console.log(error));
+    }
+}
+
 export function showUpdate(category) {
     return [
         showTabs('tabUpdate'),
