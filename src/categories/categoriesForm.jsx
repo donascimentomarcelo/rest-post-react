@@ -4,6 +4,7 @@ import labelAndinput from '../common/form/labelAndinput';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { init } from './categoriesActions';
+import SubcategoriesList from '../subcategories/subcategoriesList';
 
 export class CategoriesForm extends Component {
     render() {
@@ -25,6 +26,8 @@ export class CategoriesForm extends Component {
                         cols="12 6"
                         placeholder="Informe a descrição"
                         readOnly={readOnly}/>
+
+                    <SubcategoriesList cols='12 6'/>
                 </div>
                 <div className="box-footer">
                     <button type="submit" className={`btn btn-${this.props.submitClass}`}>
