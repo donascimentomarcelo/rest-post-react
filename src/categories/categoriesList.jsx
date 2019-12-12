@@ -34,7 +34,7 @@ export class CategoriesList extends Component {
                     <thead>
                         <tr>
                             <th>Nome</th>
-                            <th>Ações</th>
+                            <th className='table-actions'>Ações</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -39,13 +39,23 @@ export class Categories extends Component {
                                 <CategoriesList/>
                             </TabContent>
                             <TabContent id='tabCreate'>
-                                <CategoriesForm onSubmit={this.props.create}/>
+                                <CategoriesForm 
+                                    onSubmit={this.props.create}
+                                    submitLabel='Incluir'
+                                    submitClass='primary'/>
                             </TabContent>
                             <TabContent id='tabUpdate'>
-                                <CategoriesForm  onSubmit={this.props.update}/>
+                                <CategoriesForm  
+                                    onSubmit={this.props.update}
+                                    submitLabel='Alterar'
+                                    submitClass='info'/>
                             </TabContent>
                             <TabContent id='tabDelete'>
-                                <CategoriesForm  onSubmit={this.props.remove} readOnly={true}/>
+                                <CategoriesForm  
+                                    onSubmit={this.props.remove} 
+                                    readOnly={true}
+                                    submitLabel='Excluir'
+                                    submitClass='danger'/>
                             </TabContent>
                         </TabsContent>
                     </Tabs>
