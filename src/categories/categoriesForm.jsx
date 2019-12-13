@@ -27,7 +27,7 @@ export class CategoriesForm extends Component {
                         placeholder="Informe a descrição"
                         readOnly={readOnly}/>
 
-                    <SubcategoriesList cols='12 6'/>
+                    <SubcategoriesList cols='12 6' readOnly={readOnly}/>
                 </div>
                 <div className="box-footer">
                     <button type="submit" className={`btn btn-${this.props.submitClass}`}>

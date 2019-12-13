@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
 import Grid from '../common/layout/grid'
 import { Field } from 'redux-form';
+import Input from '../common/form/input';
 
 export class SubcategoriesList extends Component {
 
     renderRows() {
         return (
             <tr>
-                <td><Field name='subcategories[0].name' component='input'/></td>
+                <td>
+                    <Field 
+                        name='subcategories[0].name' 
+                        component={Input}
+                        placeholder='Informe o nome'
+                        readOnly={this.props.readOnly}/>
+                </td>
                 <td></td>
             </tr>
         )
