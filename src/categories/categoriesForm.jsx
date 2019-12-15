@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, formValueSelector } from 'redux-form';
 import labelAndinput from '../common/form/labelAndinput';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -8,7 +8,7 @@ import SubcategoriesList from '../subcategories/subcategoriesList';
 
 export class CategoriesForm extends Component {
     render() {
-        const { handleSubmit, readOnly } = this.props;
+        const { handleSubmit, readOnly, subcategories } = this.props;
         return (
             <form role='form' onSubmit={handleSubmit}>
                 <div className="box-body">
@@ -27,7 +27,10 @@ export class CategoriesForm extends Component {
                         placeholder="Informe a descrição"
                         readOnly={readOnly}/>
 
-                    <SubcategoriesList cols='12 6' readOnly={readOnly}/>
+                    <SubcategoriesList 
+                        cols='12 6' 
+                        readOnly={readOnly}
+                        list={subcategories}/>
                 </div>
                 <div className="box-footer">
                     <button type="submit" className={`btn btn-${this.props.submitClass}`}>
@@ -41,5 +44,7 @@ export class CategoriesForm extends Component {
 }
 
 CategoriesForm = reduxForm({form: 'categoriesForm', destroyOnUnmount: false})(CategoriesForm);
+const selector = formValueSelector('categoriesForm')
+const mapStateToProps = state => ({ subcategories: selector(state, 'subcategories')});
 const mapDispatchToProps = dispatch => bindActionCreators({init}, dispatch);
-export default connect(null, mapDispatchToProps)(CategoriesForm);
+export default connect(mapStateToProps, mapDispatchToProps)(CategoriesForm);

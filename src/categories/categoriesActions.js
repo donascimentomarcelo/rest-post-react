@@ -4,7 +4,7 @@ import { reset as resetForm, initialize } from 'redux-form';
 import { showTabs, selectTab } from "../common/tab/tabActions";
 
 const api_url = 'http://localhost:8080/api';
-const INITIAL_VALUES = {};
+const INITIAL_VALUES = { subcategories: [{}] };
 
 export function getList() {
     const req = Axios.get(`${api_url}/categories`);

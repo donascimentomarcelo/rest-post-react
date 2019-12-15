@@ -6,18 +6,19 @@ import Input from '../common/form/input';
 export class SubcategoriesList extends Component {
 
     renderRows() {
-        return (
-            <tr>
+        const list = this.props.list || [];
+        return list.map((item, i) => (
+            <tr key={i}>
                 <td>
                     <Field 
-                        name='subcategories[0].name' 
+                        name={`subcategories[${i}].name`} 
                         component={Input}
                         placeholder='Informe o nome'
                         readOnly={this.props.readOnly}/>
                 </td>
                 <td></td>
             </tr>
-        )
+        ));
     }
 
     render() {
