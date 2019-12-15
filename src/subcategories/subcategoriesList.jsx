@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Grid from '../common/layout/grid'
-import { Field, arrayInsert } from 'redux-form';
+import { Field, arrayInsert, arrayRemove } from 'redux-form';
 import Input from '../common/form/input';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -10,6 +10,12 @@ export class SubcategoriesList extends Component {
     add(i, item = {}) {
         if(!this.props.readOnly) {
             this.props.arrayInsert('categoriesForm', 'subcategories', i, item);
+        }
+    }
+
+    remove(i) {
+        if (!this.props.readOnly && this.props.list.length > 1) {
+            this.props.arrayRemove('categoriesForm', 'subcategories', i);
         }
     }
 
@@ -30,6 +36,9 @@ export class SubcategoriesList extends Component {
                     </button>
                     <button type='button'className='btn btn-warning' onClick={() => this.add(i + 1, item)}>
                         <i className="fa fa-clone"></i>
+                    </button>
+                    <button type='button'className='btn btn-danger' onClick={() => this.remove(i)}>
+                        <i className="fa fa-trash"></i>
                     </button>
                 </td>
             </tr>
@@ -56,5 +65,5 @@ export class SubcategoriesList extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ arrayInsert }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ arrayInsert, arrayRemove }, dispatch);
 export default connect(null, mapDispatchToProps)(SubcategoriesList);
