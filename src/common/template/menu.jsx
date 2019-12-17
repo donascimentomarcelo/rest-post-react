@@ -7,6 +7,7 @@ export default props => (
         <MenuItem path='#' label='Dashboard' icon='dashboard'/>
         <MenuTree label='Configurações' icon='edit'>
             <MenuItem path='#categories' label='Categorias' icon='list-ol'/>
+            <MenuItem path='#subcategories' label='Subcategorias' icon='list-ul'/>
         </MenuTree>
     </ul>
 );
