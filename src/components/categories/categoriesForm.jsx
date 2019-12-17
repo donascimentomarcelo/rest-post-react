@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { reduxForm, Field, formValueSelector } from 'redux-form';
-import labelAndinput from '../common/form/labelAndinput';
+import labelAndinput from '../../common/form/labelAndinput';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { init } from './categoriesActions';
-import SubcategoriesList from '../subcategories/subcategoriesList';
+import SubcategoriesList from './itemList';
 
 export class CategoriesForm extends Component {
     render() {

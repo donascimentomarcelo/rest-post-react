@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import Grid from '../common/layout/grid'
+import Grid from '../../common/layout/grid'
 import { Field, arrayInsert, arrayRemove } from 'redux-form';
-import Input from '../common/form/input';
+import Input from '../../common/form/input';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-export class SubcategoriesList extends Component {
+export class ItemList extends Component {
 
     add(i, item = {}) {
         if(!this.props.readOnly) {
@@ -66,4 +66,4 @@ export class SubcategoriesList extends Component {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({ arrayInsert, arrayRemove }, dispatch);
-export default connect(null, mapDispatchToProps)(SubcategoriesList);
+export default connect(null, mapDispatchToProps)(ItemList);

@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import DashboardReducer from "../dashboard/dashboardReducer";
 import TabReducer from "../common/tab/tabReducer";
-import CategoriesReducer from "../categories/categoriesReducer";
+import CategoriesReducer from "../components/categories/categoriesReducer";
 import { reducer as formReducer } from "redux-form";
 import { reducer as toastrReducer } from 'react-redux-toastr';
 
