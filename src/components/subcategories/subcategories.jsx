@@ -4,6 +4,7 @@ import Content from '../../common/template/content'
 import { getAll, update, remove } from './subcategoriesActions'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Link } from 'react-router'
 
 export class Subcategories extends Component {
 
@@ -32,6 +33,11 @@ export class Subcategories extends Component {
         return (
             <div>
                 <ContentHeader title='Subcategorias' small='listar subcategorias'/>
+                <div className="col-md-12 text-right">
+                    <Link className="btn btn-primary" to='/subcategories/new'>
+                        <i className="fa fa-plus"></i>
+                    </Link>
+                </div>
                 <Content>
                     <table className="table">
                         <thead>
