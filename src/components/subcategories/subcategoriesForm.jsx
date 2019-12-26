@@ -3,7 +3,7 @@ import { reduxForm, Field, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './subcategories.css';
-import { create, findOne, init } from './subcategoriesActions';
+import { create, findOne, update, init } from './subcategoriesActions';
 import { getList as getCategoties } from "../categories/categoriesActions";
 
 export class SubcategoriesForm extends Component {
@@ -18,10 +18,24 @@ export class SubcategoriesForm extends Component {
     }
     
     submit(values) {
-        this.props.create(values);
+        const route = this.takeLastWorldOfRoute();
+        if (route === 'new') {
+            this.props.create(values);
+        }
+
+        if (route !== 'new') {
+            const id = this.props.params.id
+            this.props.update(values, id);
+        }
+
         this.props.router.goBack();
     }
     
+    takeLastWorldOfRoute() {
+        const route = this.props.route.path.split("/");
+        return route[route.length - 1];
+    }
+
     back() {
         this.props.init();
         this.props.router.goBack();
@@ -86,7 +100,7 @@ const mapStateToProps = state => (
 );
 
 const mapDispatchToProps = dispatch => bindActionCreators(
-    { create, findOne, getCategoties, init },
+    { create, findOne, getCategoties, update, init },
     dispatch
 );
 

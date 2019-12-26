@@ -41,5 +41,13 @@ export function actionsAfterSuccess() {
     toastr.success('Sucesso!','Operação realizada com sucesso!');
 }
 
-export function update(subcategory) { console.log(subcategory); } 
+export function update(subcategory, id) { 
+    return dispatch => {
+        Axios.put(`${api_url}${path}/${id}`, subcategory)
+            .then(() => {
+                dispatch(actionsAfterSuccess());
+            })
+            .catch(error => console.log(error));
+    }
+ } 
 export function remove(subcategory) { console.log(subcategory); }
