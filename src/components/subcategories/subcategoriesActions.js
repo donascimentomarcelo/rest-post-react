@@ -25,7 +25,7 @@ export function create(values) {
     return dispatch => {
         Axios.post(`${api_url}${path}`, values)
             .then(() => {
-                dispatch(actionsAfterSuccess());
+                dispatch(actionsAfterSuccess('Subcategoria salva com sucesso!'));
             })
             .catch(error => console.log(error));
     }
@@ -37,17 +37,26 @@ export function init() {
     ];
 }
 
-export function actionsAfterSuccess() {
-    toastr.success('Sucesso!','Operação realizada com sucesso!');
+export function actionsAfterSuccess(msg) {
+    toastr.success('Sucesso!', msg);
 }
 
 export function update(subcategory, id) { 
     return dispatch => {
         Axios.put(`${api_url}${path}/${id}`, subcategory)
             .then(() => {
-                dispatch(actionsAfterSuccess());
+                dispatch(actionsAfterSuccess('Subcategoria alterada com sucesso!'));
             })
             .catch(error => console.log(error));
     }
  } 
-export function remove(subcategory) { console.log(subcategory); }
+export function remove(subcategory) {
+    return dispatch => {
+        Axios.delete(`${api_url}${path}/${subcategory.id}`)
+            .then(() => {
+                actionsAfterSuccess('Subcategoria removida com sucesso!')
+                dispatch(getAll());
+            })
+            .catch(error => console.log(error))
+    }
+ }

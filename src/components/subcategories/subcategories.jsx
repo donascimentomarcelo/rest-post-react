@@ -9,6 +9,7 @@ import { Link } from 'react-router'
 export class Subcategories extends Component {
 
     componentWillMount() {
+        console.log('inicia')
         this.props.getAll();
     }
 
