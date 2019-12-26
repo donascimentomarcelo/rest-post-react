@@ -18,9 +18,9 @@ export class Subcategories extends Component {
             <tr key={subcategory.id}>
                 <td>{subcategory.name}</td>
                 <td>
-                    <button className="btn btn-warning" onClick={() => this.props.update(subcategory)}>
+                    <Link className="btn btn-warning" to={`/subcategories/${subcategory.id}/edit`}>
                         <i className="fa fa-pencil"></i>
-                    </button>
+                    </Link>
                     <button className="btn btn-danger" onClick={() => this.props.remove(subcategory)}>
                         <i className="fa fa-trash"></i>
                     </button>

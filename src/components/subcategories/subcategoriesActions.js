@@ -1,6 +1,6 @@
 import Axios from "axios";
 import { toastr } from 'react-redux-toastr';
-import { createBrowserHistory } from 'history';
+import { initialize } from 'redux-form';
 
 const api_url = 'http://localhost:8080/api';
 const path = '/subcategories';
@@ -13,6 +13,14 @@ export function getAll() {
     };
 }
 
+export function findOne(id) {
+    const req = Axios.get(`${api_url}${path}/${id}`);
+    return {
+        type: 'SUBCATEGORY',
+        payload: req
+    }
+}
+
 export function create(values) {
     return dispatch => {
         Axios.post(`${api_url}${path}`, values)
@@ -23,9 +31,14 @@ export function create(values) {
     }
 }
 
+export function init() {
+    return [
+        initialize('subcategoriesForm')
+    ];
+}
+
 export function actionsAfterSuccess() {
     toastr.success('Sucesso!','Operação realizada com sucesso!');
-    createBrowserHistory().push('/subcategories')
 }
 
 export function update(subcategory) { console.log(subcategory); } 
