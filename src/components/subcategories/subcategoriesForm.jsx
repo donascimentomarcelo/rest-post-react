@@ -9,7 +9,6 @@ import { getList as getCategoties } from "../categories/categoriesActions";
 export class SubcategoriesForm extends Component {
 
     componentWillMount() {
-        this.props.init();
         this.props.getCategoties();
         const id = this.props.params.id || null;
         if (id) {
@@ -67,7 +66,6 @@ export class SubcategoriesForm extends Component {
                 <div className="form-group col-md-12">
                     <label>Nome</label>
                     <Field 
-                        value={this.props.subcategory || null}
                         component='input' 
                         name='name' 
                         className="form-control" 
@@ -95,7 +93,8 @@ SubcategoriesForm = reduxForm(
 const mapStateToProps = state => (
     { 
         list: state.categories.list,
-        initialValues: state.subcategories.subcategory 
+        initialValues: state.subcategories.subcategory,
+        enableReinitialize: true
     }
 );
 
