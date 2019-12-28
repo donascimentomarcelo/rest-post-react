@@ -13,6 +13,14 @@ export function getAll() {
     };
 }
 
+export function paginate(linesPerPage, page) {
+    const req = Axios.get(`${api_url}${path}/paginate?linesPerPage=${linesPerPage}&page=${page}`);
+    return {
+        type: 'PAGINATE',
+        payload: req
+    }
+}
+
 export function findOne(id) {
     const req = Axios.get(`${api_url}${path}/${id}`);
     return {
