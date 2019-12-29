@@ -1,4 +1,5 @@
 import React from 'react';
+import './pagination.css';
 
 const ListPagination = props => {
   if (props.totalElements <= 10) {
@@ -13,7 +14,7 @@ const ListPagination = props => {
   const setPage = page => props.onSetPage(page);
 
   return (
-    <nav>
+    <nav className='align-pagination'>
       <ul className="pagination">
 
         {
@@ -35,7 +36,6 @@ const ListPagination = props => {
             );
           })
         }
-
       </ul>
     </nav>
   );

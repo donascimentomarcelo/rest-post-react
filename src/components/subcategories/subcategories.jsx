@@ -16,12 +16,11 @@ export class Subcategories extends Component {
     }
 
     renderRow() {
-        // const list = this.props.list || [];
         const list = this.props.content || [];
         return list.map(subcategory => (
             <tr key={subcategory.id}>
                 <td>{subcategory.name}</td>
-                <td>
+                <td className='align-actions'>
                     <Link className="btn btn-warning" to={`/subcategories/${subcategory.id}/edit`}>
                         <i className="fa fa-pencil"></i>
                     </Link>
@@ -34,8 +33,8 @@ export class Subcategories extends Component {
     }
 
     onSetPage(page){
-        console.log(this.props)
         const { linesPerPage } = this.props;
+
         this.props.paginate(linesPerPage, page);
     }
 
@@ -53,7 +52,7 @@ export class Subcategories extends Component {
                         <thead>
                             <tr>
                                 <th>Nome</th>
-                                <th>Ações</th>
+                                <th className='align-actions'>Ações</th>
                             </tr>
                         </thead>
                         <tbody>

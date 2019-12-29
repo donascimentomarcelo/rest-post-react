@@ -1,0 +1,7 @@
+.align-pagination {
+    text-align: center;
+}
+
+.pagination {
+    display: inline-flex !important;
+}
