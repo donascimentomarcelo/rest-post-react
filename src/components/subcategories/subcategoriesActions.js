@@ -67,4 +67,14 @@ export function remove(subcategory) {
             })
             .catch(error => console.log(error))
     }
- }
+}
+
+export function setPage(linesPerPage, page) {
+    return {
+        type: 'SETPAGE',
+        payload: {
+            linesPerPage,
+            page
+        }
+    }
+}

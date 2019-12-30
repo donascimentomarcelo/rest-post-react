@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import ContentHeader from '../../common/template/contentHeader'
 import Content from '../../common/template/content'
-import { getAll, update, remove, paginate } from './subcategoriesActions'
+import { getAll, update, remove, paginate, setPage } from './subcategoriesActions'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router'
 import ListPagination from '../../common/pagination/listPagination';
+import ItemsPerPage  from '../../common/pagination/itemsPerPage';
 
 export class Subcategories extends Component {
 
     componentWillMount() {
-        const { linesPerPage, page } = this.props;
-
+        const linesPerPage = 10 , page = 0;
         this.props.paginate(linesPerPage, page);
     }
 
@@ -34,8 +34,14 @@ export class Subcategories extends Component {
 
     onSetPage(page){
         const { linesPerPage } = this.props;
-
         this.props.paginate(linesPerPage, page);
+        this.props.setPage(this.props.linesPerPage, page)
+    }
+
+    onSetItemPerPage(ev) {
+        const linesPerPage = ev.target.value;
+        this.props.paginate(linesPerPage, this.props.page);
+        this.props.setPage(linesPerPage, this.props.page)
     }
 
     render() {
@@ -64,6 +70,12 @@ export class Subcategories extends Component {
                         totalElements={this.props.totalElements}
                         currentPage={this.props.number}
                         onSetPage={this.onSetPage.bind(this)}/>
+                        
+                    <ItemsPerPage
+                        linesPerPage={this.props.linesPerPage}
+                        totalElements={this.props.totalElements}
+                        onSetItemPerPage={this.onSetItemPerPage.bind(this)}/>
+
                 </Content>
             </div>
         )
@@ -86,7 +98,7 @@ const mapStateToProps = state => (
     });
 
 const mapDispatchToProps = dispatch => bindActionCreators(
-    { getAll, update, remove, paginate }, 
+    { getAll, update, remove, paginate, setPage }, 
 dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Subcategories);

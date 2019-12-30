@@ -28,9 +28,13 @@ export default (state = INITIAL_STATE, action) => {
                 number: action.payload.data.number,
                 first: action.payload.data.first,
                 numberOfElements: action.payload.data.numberOfElements,
-                linesPerPage: 10,
-                page: 0,
              };
+        case 'SETPAGE':
+            return {
+                ...state,
+                linesPerPage: action.payload.linesPerPage,
+                page: action.payload.page
+            };
         case 'SUBCATEGORY':
             return {...state, subcategory: action.payload.data};
         default:

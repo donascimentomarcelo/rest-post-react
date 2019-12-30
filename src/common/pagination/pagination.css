@@ -5,3 +5,9 @@
 .pagination {
     display: inline-flex !important;
 }
+
+.selector-qtd-resources {
+    width: 7%;
+    display: inline;
+    margin-left: 1%;
+}
