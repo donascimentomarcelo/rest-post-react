@@ -7,7 +7,7 @@ const ListPagination = props => {
   }
 
   const range = [];
-  for (let i = 0; i < Math.ceil(props.totalElements / 10); ++i) {
+  for (let i = 0; i < Math.ceil(props.totalElements / props.linesPerPage); ++i) {
     range.push(i);
   }
 

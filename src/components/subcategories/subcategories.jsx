@@ -68,7 +68,9 @@ export class Subcategories extends Component {
 
                     <ListPagination
                         totalElements={this.props.totalElements}
+                        numberOfElements={this.props.numberOfElements}
                         currentPage={this.props.number}
+                        linesPerPage={this.props.linesPerPage}
                         onSetPage={this.onSetPage.bind(this)}/>
                         
                     <ItemsPerPage
