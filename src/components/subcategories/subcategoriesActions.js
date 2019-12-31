@@ -1,8 +1,9 @@
 import Axios from "axios";
 import { toastr } from 'react-redux-toastr';
 import { initialize } from 'redux-form';
+import environment from "../../environment/environment";
 
-const api_url = 'http://localhost:8080/api';
+const api_url = environment();
 const path = '/subcategories';
 
 export function getAll() {

@@ -1,5 +1,5 @@
-export const dev = {
-    url: {
-        API_URL: 'http://localhost:8080/api'
-    }
+const environment = () => {
+    return 'http://localhost:8080/api';
 };
+
+export default environment;

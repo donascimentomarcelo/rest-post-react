@@ -2,8 +2,9 @@ import Axios from "axios";
 import { toastr } from 'react-redux-toastr';
 import { reset as resetForm, initialize } from 'redux-form';
 import { showTabs, selectTab } from "../../common/tab/tabActions";
+import environment from "../../environment/environment";
 
-const api_url = 'http://localhost:8080/api';
+const api_url = environment();
 const INITIAL_VALUES = { subcategories: [{}] };
 
 export function getList() {
