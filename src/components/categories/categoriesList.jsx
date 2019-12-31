@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import { getList, showUpdate, showDelete } from './categoriesActions';
+import { paginate, showUpdate, showDelete, setPage } from './categoriesActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import ListPagination from '../../common/pagination/listPagination';
+import ItemsPerPage from '../../common/pagination/itemsPerPage';
 
 export class CategoriesList extends Component {
 
     componentWillMount() {
-        this.props.getList();
+        const linesPerPage = 10 , page = 0;
+        this.props.paginate(linesPerPage, page);
     }
 
     renderRows() {
-        const list = this.props.list || [];
-
+        const list = this.props.content || [];
         return list.map(category => (
             <tr key={category.id}>
                 <td>{category.name}</td>
@@ -25,6 +27,18 @@ export class CategoriesList extends Component {
                 </td>
             </tr>
         ));
+    }
+  
+    onSetPage(page){
+        const { linesPerPage } = this.props;
+        this.props.paginate(linesPerPage, page);
+        this.props.setPage(this.props.linesPerPage, page)
+    }
+
+    onSetItemPerPage(ev) {
+        const linesPerPage = ev.target.value;
+        this.props.paginate(linesPerPage, this.props.page);
+        this.props.setPage(linesPerPage, this.props.page)
     }
 
     render() {
@@ -41,11 +55,34 @@ export class CategoriesList extends Component {
                         {this.renderRows()}
                     </tbody>
                 </table>
+
+                <ListPagination
+                    totalElements={this.props.totalElements}
+                    numberOfElements={this.props.numberOfElements}
+                    currentPage={this.props.number}
+                    linesPerPage={this.props.linesPerPage}
+                    onSetPage={this.onSetPage.bind(this)}/>
+                        
+                <ItemsPerPage
+                    linesPerPage={this.props.linesPerPage}
+                    totalElements={this.props.totalElements}
+                    onSetItemPerPage={this.onSetItemPerPage.bind(this)}/>
             </div>
         )
     }
 }
 
-const mapStateToProps = state => ({ list: state.categories.list });
-const mapDispatchToProps = dispatch => bindActionCreators({ getList, showUpdate, showDelete }, dispatch);
+const mapStateToProps = state => ({ 
+    content: state.categories.content,
+    last: state.categories.last,
+    totalPages: state.categories.totalPages,
+    totalElements: state.categories.totalElements,
+    size: state.categories.size,
+    number: state.categories.number,
+    first: state.categories.first,
+    numberOfElements: state.categories.numberOfElements, 
+    linesPerPage: state.categories.linesPerPage, 
+    page: state.categories.page,
+});
+const mapDispatchToProps = dispatch => bindActionCreators({ paginate, showUpdate, showDelete, setPage }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(CategoriesList);

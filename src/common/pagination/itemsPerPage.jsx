@@ -1,7 +1,7 @@
 import React from 'react';
 import './pagination.css';
 
-export default props => {
+const ItemsPerPage = props => {
 
     const { linesPerPage, onSetItemPerPage } = props;
     const array = [10, 20, 50, 100];
@@ -19,3 +19,5 @@ export default props => {
         </select>
     );
 }
+
+export default ItemsPerPage;

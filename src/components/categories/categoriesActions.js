@@ -14,6 +14,14 @@ export function getList() {
     }
 }
 
+export function paginate(linesPerPage, page) {
+    const req = Axios.get(`${api_url}/categories/paginate?linesPerPage=${linesPerPage}&page=${page}`);
+    return {
+        type: 'CATEGORY_PAGINATE',
+        payload: req
+    }
+}
+
 export function create(values) {
     return submit(values, 'post');
 }
@@ -61,4 +69,14 @@ export function init() {
         getList(),
         initialize('categoriesForm', INITIAL_VALUES)
     ];
+}
+
+export function setPage(linesPerPage, page) {
+    return {
+        type: 'CATEGORY_SETPAGE',
+        payload: {
+            linesPerPage,
+            page
+        }
+    }
 }
