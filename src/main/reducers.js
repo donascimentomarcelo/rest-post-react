@@ -5,6 +5,7 @@ import { reducer as formReducer } from "redux-form";
 import { reducer as toastrReducer } from 'react-redux-toastr';
 import CategoriesReducer from "../components/categories/categoriesReducer";
 import SubcategoriesReducer from "../components/subcategories/subcategoriesReducer";
+import PostsReducers from "../components/posts/postsReducers";
 
 const rootReducer = combineReducers({
     dashboard: DashboardReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     toastr: toastrReducer,
     categories: CategoriesReducer,
     subcategories: SubcategoriesReducer,
+    posts: PostsReducers,
 });
 
 export default rootReducer;
