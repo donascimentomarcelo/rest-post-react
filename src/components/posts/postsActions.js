@@ -13,3 +13,13 @@ export function paginate(linesPerPage, page) {
         payload: req
     }
 }
+
+export function setPage(linesPerPage, page) {
+    return {
+        type: 'SETPAGE',
+        payload: {
+            linesPerPage,
+            page
+        }
+    }
+}

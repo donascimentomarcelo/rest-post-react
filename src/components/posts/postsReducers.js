@@ -27,6 +27,12 @@ export default (state = INITIAL_STATE, action) => {
                 first: action.payload.data.first,
                 numberOfElements: action.payload.data.numberOfElements,
             }
+        case 'SETPAGE':
+            return {
+                ...state,
+                linesPerPage: action.payload.linesPerPage,
+                page: action.payload.page,
+            }
         default:
             return state;
     }
