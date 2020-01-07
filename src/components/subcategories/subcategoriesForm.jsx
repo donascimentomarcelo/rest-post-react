@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { reduxForm, Field, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import './subcategories.css';
 import { create, findOne, update, init } from './subcategoriesActions';
 import { getList as getCategoties } from "../categories/categoriesActions";
+import './subcategories.css';
 
 export class SubcategoriesForm extends Component {
 
@@ -41,7 +41,7 @@ export class SubcategoriesForm extends Component {
     }
 
     renderOptions() {
-        const list = this.props.list;
+        const list = this.props.list || [];
         return list.map(category => (
             <option 
                 key={category.id} 
