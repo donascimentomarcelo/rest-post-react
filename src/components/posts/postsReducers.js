@@ -11,6 +11,7 @@ const INITIAL_STATE = {
     numberOfElements: null,
     linesPerPage: 10,
     page: 0,
+    categoryId: ""
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -33,6 +34,12 @@ export default (state = INITIAL_STATE, action) => {
                 linesPerPage: action.payload.linesPerPage,
                 page: action.payload.page,
             }
+        case 'SETSELECTCATEGORIES': 
+            return {
+                ...state,
+                categoryId: action.payload.categoryId,
+            }
+
         default:
             return state;
     }

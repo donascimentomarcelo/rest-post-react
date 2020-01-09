@@ -81,3 +81,12 @@ export function setPage(linesPerPage, page) {
         }
     }
 }
+
+export function setSelectCategories(categoryId) {
+    return {
+        type: 'SETSELECTCATEGORIES',
+        payload: {
+            categoryId
+        }
+    }
+}

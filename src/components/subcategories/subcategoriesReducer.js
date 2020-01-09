@@ -37,6 +37,11 @@ export default (state = INITIAL_STATE, action) => {
             };
         case 'SUBCATEGORY':
             return {...state, subcategory: action.payload.data};
+        case 'SUBCATEGORIES_FINDED_BY_CATEGORY':
+            return {
+                ...state,
+                list: action.payload.data,
+            };
         default:
             return state;
     }

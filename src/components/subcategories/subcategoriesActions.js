@@ -79,3 +79,11 @@ export function setPage(linesPerPage, page) {
         }
     }
 }
+
+export function findSubcategoryByCategory(categoryId) {
+    const req = Axios.get(`${api_url}${path}/findByCategory/${categoryId}`);
+    return {
+        type: 'SUBCATEGORIES_FINDED_BY_CATEGORY',
+        payload: req
+    };
+}

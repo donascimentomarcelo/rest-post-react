@@ -2,8 +2,16 @@ import React, { Component } from 'react'
 import { reduxForm, Field } from 'redux-form';
 import FormGroupLabel from '../../../common/form/formGroupLabel';
 import ButtonGroup from '../../../common/form/buttonGroup';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+import { getList as getCategoties, setSelectCategories } from '../../categories/categoriesActions';
+import { findSubcategoryByCategory } from '../../subcategories/subcategoriesActions';
 
 export class PostsForm extends Component {
+
+    componentWillMount() {
+        this.props.getCategoties();
+    }
 
     submit(val) {
         console.log('submit')
@@ -27,16 +35,27 @@ export class PostsForm extends Component {
         ));
     }
 
+    getSubcategoties(ev) {
+        const categoryId = ev.target.value;
+        this.props.setSelectCategories(categoryId);
+        this.props.findSubcategoryByCategory(categoryId);
+        // preencher o form e enviar
+    }
+
     render() {
-        const {handleSubmit, pristine, submitting} = this.props;
+        const {handleSubmit, pristine, submitting, categoryId} = this.props;
         return (
             <form onSubmit={handleSubmit(this.submit.bind(this))}>
                 
                 <FormGroupLabel label='Categoria'>
-                    <Field name='categoryId' component='select' className="form-control">
+                    <select 
+                        name='categoryId' 
+                        className="form-control"
+                        value={categoryId}
+                        onChange={this.getSubcategoties.bind(this)}>
                         <option value=''>---</option> 
                         {this.renderCategoriesOptions()}
-                    </Field>
+                    </select>
                 </FormGroupLabel>
 
                 <FormGroupLabel label='Subcategoria'>
@@ -80,4 +99,18 @@ PostsForm = reduxForm(
     }
 )(PostsForm);
 
-export default PostsForm;
+const mapStateToProps = state => (
+    {
+        categories: state.categories.list,
+        subcategories: state.subcategories.list,
+        categoryId: state.posts.categoryId,
+        enableReinitialize: true
+    }
+);
+
+const mapDispatchToProps = dispatch => bindActionCreators(
+    { getCategoties, setSelectCategories, findSubcategoryByCategory },
+    dispatch
+)
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostsForm);
