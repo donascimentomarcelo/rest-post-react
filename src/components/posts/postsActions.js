@@ -1,10 +1,11 @@
 import Axios from "axios";
-import { toastr } from 'react-redux-toastr';
 import { initialize } from 'redux-form';
 import environment from "../../environment/environment";
+import { toastr } from 'react-redux-toastr';
 
 const api_url = environment();
 const path = '/posts';
+const messageCreate = 'Post salva com sucesso!'
 
 export function paginate(linesPerPage, page) {
     const req = Axios.get(`${api_url}${path}/paginate?linesPerPage=${linesPerPage}&page=${page}`);
@@ -22,4 +23,22 @@ export function setPage(linesPerPage, page) {
             page
         }
     }
+}
+
+export function create(post) {
+    return dispatch => {
+        Axios.post(`${api_url}${path}`, post)
+        .then(() => dispatch(acionsAfterSuccess(messageCreate)))
+        .catch(error => console.log(error));
+    }
+}
+
+function acionsAfterSuccess(messageCreate) {
+    toastr.success('Sucesso!', messageCreate);
+}
+
+export function init() {
+    return [
+        initialize('postsForm')
+    ]
 }

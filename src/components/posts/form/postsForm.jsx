@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { getList as getCategoties, setSelectCategories } from '../../categories/categoriesActions';
 import { findSubcategoryByCategory } from '../../subcategories/subcategoriesActions';
+import { create, init } from '../postsActions';
 
 export class PostsForm extends Component {
 
@@ -13,8 +14,9 @@ export class PostsForm extends Component {
         this.props.getCategoties();
     }
 
-    submit(val) {
-        console.log('submit')
+    submit(post) {
+        this.props.create(post);
+        this.props.router.goBack();
     }
 
     renderCategoriesOptions() {
@@ -39,7 +41,6 @@ export class PostsForm extends Component {
         const categoryId = ev.target.value;
         this.props.setSelectCategories(categoryId);
         this.props.findSubcategoryByCategory(categoryId);
-        // preencher o form e enviar
     }
 
     render() {
@@ -109,7 +110,7 @@ const mapStateToProps = state => (
 );
 
 const mapDispatchToProps = dispatch => bindActionCreators(
-    { getCategoties, setSelectCategories, findSubcategoryByCategory },
+    { getCategoties, setSelectCategories, findSubcategoryByCategory, create, init },
     dispatch
 )
 
