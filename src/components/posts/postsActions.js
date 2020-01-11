@@ -33,6 +33,12 @@ export function create(post) {
     }
 }
 
+export function resetCategory() {
+    return {
+        type: 'RESETCATEGORY'
+    }
+}
+
 function acionsAfterSuccess(messageCreate) {
     toastr.success('Sucesso!', messageCreate);
 }

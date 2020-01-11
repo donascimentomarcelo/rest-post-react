@@ -39,6 +39,11 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 categoryId: action.payload.categoryId,
             }
+        case 'RESETCATEGORY': 
+            return {
+                ...state,
+                categoryId: null,
+            }
 
         default:
             return state;

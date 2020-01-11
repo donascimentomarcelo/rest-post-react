@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { getList as getCategoties, setSelectCategories } from '../../categories/categoriesActions';
 import { findSubcategoryByCategory } from '../../subcategories/subcategoriesActions';
-import { create, init } from '../postsActions';
+import { create, init, resetCategory } from '../postsActions';
 
 export class PostsForm extends Component {
 
@@ -16,6 +16,8 @@ export class PostsForm extends Component {
 
     submit(post) {
         this.props.create(post);
+        this.props.resetCategory();
+        this.props.init();
         this.props.router.goBack();
     }
 
@@ -110,7 +112,14 @@ const mapStateToProps = state => (
 );
 
 const mapDispatchToProps = dispatch => bindActionCreators(
-    { getCategoties, setSelectCategories, findSubcategoryByCategory, create, init },
+    { 
+        getCategoties, 
+        setSelectCategories, 
+        findSubcategoryByCategory, 
+        create, 
+        init,
+        resetCategory,
+    },
     dispatch
 )
 
