@@ -17,7 +17,7 @@ export default props => (
         <Route path='/subcategories/:id/edit' component={SubcategoriesForm}/>
         <Route path='/posts' component={Posts}/>
         <Route path='/posts/new' component={PostsForm}/>
-        <Route path='/posts/:id/edit' component={SubcategoriesForm}/>
+        <Route path='/posts/:id/edit' component={PostsForm}/>
         <Redirect from='*' to='/'/>
     </Router>
 );

@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
-    list: [], 
+    list: [],
+    post: null,
     posts: null,
     content: null,
     last: null,
@@ -38,6 +39,11 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 categoryId: action.payload.categoryId,
+            }
+        case 'POST':
+            return {
+                ...state,
+                post: action.payload.data,
             }
         case 'RESETCATEGORY': 
             return {

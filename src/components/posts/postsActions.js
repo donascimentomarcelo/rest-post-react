@@ -15,6 +15,14 @@ export function paginate(linesPerPage, page) {
     }
 }
 
+export function findOne(id) {
+    const req = Axios.get(`${api_url}${path}/${id}`);
+    return {
+        type: 'POST',
+        payload: req
+    }
+}
+
 export function setPage(linesPerPage, page) {
     return {
         type: 'SETPAGE',

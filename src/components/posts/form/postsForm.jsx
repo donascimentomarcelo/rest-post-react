@@ -6,19 +6,32 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { getList as getCategoties, setSelectCategories } from '../../categories/categoriesActions';
 import { findSubcategoryByCategory } from '../../subcategories/subcategoriesActions';
-import { create, init, resetCategory } from '../postsActions';
+import { create, init, resetCategory, findOne } from '../postsActions';
 
 export class PostsForm extends Component {
 
     componentWillMount() {
         this.props.getCategoties();
+        const id = this.props.params.id || null;
+        if (id) {
+            this.props.findOne(id);
+            // console.log(this.props);
+        }
+    }
+
+    componentDidUpdate() {
+        this.getSubcategoties({
+            target: {value: '5e1a5c72a011c734a080351f'}
+        });
+        console.log(this.props);
     }
 
     submit(post) {
-        this.props.create(post);
-        this.props.resetCategory();
-        this.props.init();
-        this.props.router.goBack();
+        console.log(post);
+        // this.props.create(post);
+        // this.props.resetCategory();
+        // this.props.init();
+        // this.props.router.goBack();
     }
 
     renderCategoriesOptions() {
@@ -45,6 +58,11 @@ export class PostsForm extends Component {
         this.props.findSubcategoryByCategory(categoryId);
     }
 
+    back() {
+        this.props.init();
+        this.props.router.goBack();
+    }
+
     render() {
         const {handleSubmit, pristine, submitting, categoryId} = this.props;
         return (
@@ -54,7 +72,6 @@ export class PostsForm extends Component {
                     <select 
                         name='categoryId' 
                         className="form-control"
-                        value={categoryId}
                         onChange={this.getSubcategoties.bind(this)}>
                         <option value=''>---</option> 
                         {this.renderCategoriesOptions()}
@@ -85,10 +102,10 @@ export class PostsForm extends Component {
                 </FormGroupLabel>
 
                 <ButtonGroup>
-                    <button type="submit" className='btn btn-primary' disabled={pristine || submitting}>
+                    <button type="submit" className='btn btn-primary'>
                         Salvar
                     </button>
-                    <button type="button" className="btn btn-default">Voltar</button>
+                    <button type="button" className="btn btn-default" onClick={this.back.bind(this)}>Voltar</button>
                 </ButtonGroup>
             </form>
         )
@@ -107,6 +124,7 @@ const mapStateToProps = state => (
         categories: state.categories.list,
         subcategories: state.subcategories.list,
         categoryId: state.posts.categoryId,
+        initialValues: state.posts.post,
         enableReinitialize: true
     }
 );
@@ -119,6 +137,7 @@ const mapDispatchToProps = dispatch => bindActionCreators(
         create, 
         init,
         resetCategory,
+        findOne,
     },
     dispatch
 )
