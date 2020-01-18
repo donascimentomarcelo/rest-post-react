@@ -41,6 +41,14 @@ export function create(post) {
     }
 }
 
+export function update(post, id) {
+    return dispatch => {
+        Axios.put(`${api_url}${path}/${id}`, post)
+        .then(() => dispatch(acionsAfterSuccess(messageCreate)))
+        .catch(error => console.log(error));
+    }
+}
+
 export function resetCategory() {
     return {
         type: 'RESETCATEGORY'

@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { getList as getCategoties, setSelectCategories } from '../../categories/categoriesActions';
 import { findSubcategoryByCategory } from '../../subcategories/subcategoriesActions';
-import { create, init, resetCategory, findOne } from '../postsActions';
+import { create, update, init, resetCategory, findOne } from '../postsActions';
 
 export class PostsForm extends Component {
 
@@ -25,11 +25,22 @@ export class PostsForm extends Component {
     }
 
     submit(post) {
-        console.log(post);
-        // this.props.create(post);
-        // this.props.resetCategory();
-        // this.props.init();
-        // this.props.router.goBack();
+        const id = this.props.routeParams.id;
+        if (id) {
+            this.props.update(post, id);
+            this.executeAfterActions();
+        }
+
+        if (!id) {
+            this.props.create(post);
+            this.executeAfterActions();
+        }
+    }
+
+    executeAfterActions() {
+        this.props.resetCategory();
+        this.props.init();
+        this.props.router.goBack();
     }
 
     renderCategoriesOptions() {
@@ -133,7 +144,8 @@ const mapDispatchToProps = dispatch => bindActionCreators(
         getCategoties, 
         setSelectCategories, 
         findSubcategoryByCategory, 
-        create, 
+        create,
+        update,
         init,
         resetCategory,
         findOne,
