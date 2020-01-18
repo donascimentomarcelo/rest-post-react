@@ -14,16 +14,14 @@ export class PostsForm extends Component {
         this.props.getCategoties();
         const id = this.props.params.id || null;
         if (id) {
-            this.props.findOne(id);
-            // console.log(this.props);
+            const promise = this.props.findOne(id);
+            promise.then(resp => {
+                const categoryId = resp.payload.data.categoryId;
+                this.getSubcategoties({
+                    target: {value: categoryId}
+                });
+            })
         }
-    }
-
-    componentDidUpdate() {
-        this.getSubcategoties({
-            target: {value: '5e1a5c72a011c734a080351f'}
-        });
-        console.log(this.props);
     }
 
     submit(post) {
@@ -70,6 +68,7 @@ export class PostsForm extends Component {
                 
                 <FormGroupLabel label='Categoria'>
                     <select 
+                        value={categoryId}
                         name='categoryId' 
                         className="form-control"
                         onChange={this.getSubcategoties.bind(this)}>
