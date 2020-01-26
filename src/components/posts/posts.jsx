@@ -8,8 +8,7 @@ import { paginate, setPage, openModal } from './postsActions'
 import { connect } from 'react-redux'
 import ListPagination from '../../common/pagination/listPagination'
 import ItemsPerPage from '../../common/pagination/itemsPerPage'
-import Modal from 'react-bootstrap-modal';
-import './post.css';
+import SearchModal from '../../common/modal/search-modal'
 
 export class Posts extends Component {
 
@@ -47,22 +46,12 @@ export class Posts extends Component {
                     </Link>
                 </div>
 
-                <Modal 
+                <SearchModal
                     show={this.props.show}
                     onHide={this.search.bind(this, false)}
-                    dialogClassName="modal-90w"
-                    aria-labelledby="example-custom-modal-styling-title">
-                    <Modal.Header closeButton>
-                        <Modal.Title id="example-custom-modal-styling-title">
-                            Custom Modal Styling
-                        </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <p>
-                            Ipsum molestiae natus adipisci modi eligendi?
-                        </p>
-                    </Modal.Body>
-                </Modal>
+                    title={'Pesquisar Posts'}>
+                        Content Here ...
+                </SearchModal>
 
                 <Content>
                     <PostsList
