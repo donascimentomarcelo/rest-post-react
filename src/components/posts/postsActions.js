@@ -64,3 +64,12 @@ export function init() {
         initialize('postsForm')
     ]
 }
+
+export function openModal(show) {
+    return  {
+        type: 'SETPOSTMODAL',
+        payload: {
+            show
+        }
+    }
+}

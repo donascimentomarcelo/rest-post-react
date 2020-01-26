@@ -12,7 +12,8 @@ const INITIAL_STATE = {
     numberOfElements: null,
     linesPerPage: 10,
     page: 0,
-    categoryId: ""
+    categoryId: "",
+    show: false,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -49,6 +50,11 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 categoryId: null,
+            }
+        case 'SETPOSTMODAL':
+            return {
+                ...state,
+                show: action.payload.show
             }
 
         default:

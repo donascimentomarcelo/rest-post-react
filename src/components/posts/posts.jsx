@@ -4,10 +4,12 @@ import ContentHeader from '../../common/template/contentHeader'
 import { Link } from 'react-router'
 import Content from '../../common/template/content'
 import { bindActionCreators } from 'redux'
-import { paginate, setPage } from './postsActions'
+import { paginate, setPage, openModal } from './postsActions'
 import { connect } from 'react-redux'
 import ListPagination from '../../common/pagination/listPagination'
 import ItemsPerPage from '../../common/pagination/itemsPerPage'
+import Modal from 'react-bootstrap-modal';
+import './post.css';
 
 export class Posts extends Component {
 
@@ -27,15 +29,41 @@ export class Posts extends Component {
         this.props.setPage(linesPerPage, this.props.page);
     }
 
+    search(value) {
+        this.props.openModal(value);
+    }
+
     render() {
         return (
             <div>
                 <ContentHeader title='Posts' small='listar posts'/>
                 <div className="col-md-12 text-right">
+                    <Link className="btn btn-secundary" onClick={this.search.bind(this, true)}>
+                        <i className="fa fa-search"></i>
+                    </Link>
+
                     <Link className="btn btn-primary" to='/posts/new'>
                         <i className="fa fa-plus"></i>
                     </Link>
                 </div>
+
+                <Modal 
+                    show={this.props.show}
+                    onHide={this.search.bind(this, false)}
+                    dialogClassName="modal-90w"
+                    aria-labelledby="example-custom-modal-styling-title">
+                    <Modal.Header closeButton>
+                        <Modal.Title id="example-custom-modal-styling-title">
+                            Custom Modal Styling
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <p>
+                            Ipsum molestiae natus adipisci modi eligendi?
+                        </p>
+                    </Modal.Body>
+                </Modal>
+
                 <Content>
                     <PostsList
                         list={this.props.content}/>
@@ -70,11 +98,12 @@ const mapStateToProps = state => (
         numberOfElements: state.posts.numberOfElements,
         linesPerPage: state.posts.linesPerPage,
         page: state.posts.page,
+        show: state.posts.show,
     }
 )
 
 const mapDispactchToProps = dispatch => bindActionCreators(
-    {paginate, setPage},
+    {paginate, setPage, openModal},
     dispatch
 )
 export default connect(mapStateToProps, mapDispactchToProps)(Posts);
