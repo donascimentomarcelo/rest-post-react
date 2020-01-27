@@ -63,6 +63,12 @@ export function resetCategory() {
     }
 }
 
+export function resetPostList() {
+    return {
+        type: 'RESETPOSTLIST'
+    }
+}
+
 function acionsAfterSuccess(messageCreate) {
     toastr.success('Sucesso!', messageCreate);
 }

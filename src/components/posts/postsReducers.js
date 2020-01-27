@@ -68,6 +68,11 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 listFindedByTitle: action.payload.data
             }
+        case 'RESETPOSTLIST':
+            return {
+                ...state,
+                listFindedByTitle: []
+            }
 
         default:
             return state;

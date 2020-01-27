@@ -4,7 +4,7 @@ import ContentHeader from '../../common/template/contentHeader'
 import { Link } from 'react-router'
 import Content from '../../common/template/content'
 import { bindActionCreators } from 'redux'
-import { paginate, setPage, openModal, setSearchField, findByPostTitle } from './postsActions'
+import { paginate, setPage, openModal, setSearchField, findByPostTitle, resetPostList } from './postsActions'
 import { connect } from 'react-redux'
 import ListPagination from '../../common/pagination/listPagination'
 import ItemsPerPage from '../../common/pagination/itemsPerPage'
@@ -29,6 +29,7 @@ export class Posts extends Component {
     }
 
     search(value) {
+        this.props.resetPostList();
         this.props.setSearchField(null);
         this.props.openModal(value);
     }
@@ -57,7 +58,17 @@ export class Posts extends Component {
                             list.map(post => (
                                 <tr key={post.id}>
                                     <td>{post.title}</td>
-                                    <td>BOTÕES</td>
+                                    <td>
+                                    <Link 
+                                        onClick={this.search.bind(this, false)}
+                                        className="btn btn-warning" 
+                                        to={`/posts/${post.id}/edit`}>
+                                        <i className="fa fa-pencil"></i>
+                                    </Link>
+                                    <button className="btn btn-danger" onClick={() => null}>
+                                        <i className="fa fa-trash"></i>
+                                    </button>
+                                    </td>
                                 </tr>
                             ))
                         }
@@ -145,7 +156,7 @@ const mapStateToProps = state => (
 )
 
 const mapDispactchToProps = dispatch => bindActionCreators(
-    {paginate, setPage, openModal, setSearchField, findByPostTitle},
+    {paginate, setPage, openModal, setSearchField, findByPostTitle, resetPostList},
     dispatch
 )
 export default connect(mapStateToProps, mapDispactchToProps)(Posts);
