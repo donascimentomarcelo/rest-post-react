@@ -12,8 +12,10 @@ const INITIAL_STATE = {
     numberOfElements: null,
     linesPerPage: 10,
     page: 0,
-    categoryId: "",
+    categoryId: '',
     show: false,
+    search: '',
+    listFindedByTitle: [],
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -55,6 +57,16 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 show: action.payload.show
+            }
+        case 'SETSEARCHFIELDPOST':
+            return {
+                ...state,
+                search: action.payload.search
+            }
+        case 'FINDBYPOSTITLE':
+            return {
+                ...state,
+                listFindedByTitle: action.payload.data
             }
 
         default:

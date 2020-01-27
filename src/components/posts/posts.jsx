@@ -4,7 +4,7 @@ import ContentHeader from '../../common/template/contentHeader'
 import { Link } from 'react-router'
 import Content from '../../common/template/content'
 import { bindActionCreators } from 'redux'
-import { paginate, setPage, openModal } from './postsActions'
+import { paginate, setPage, openModal, setSearchField, findByPostTitle } from './postsActions'
 import { connect } from 'react-redux'
 import ListPagination from '../../common/pagination/listPagination'
 import ItemsPerPage from '../../common/pagination/itemsPerPage'
@@ -29,7 +29,43 @@ export class Posts extends Component {
     }
 
     search(value) {
+        this.props.setSearchField(null);
         this.props.openModal(value);
+    }
+
+    handleChange(ev) {
+        this.props.setSearchField(ev.target.value);
+    }
+
+    handleSubmit() {
+        this.props.findByPostTitle(this.props.search);
+    }
+
+    buildTable() {
+        const list =  this.props.listFindedByTitle || [];
+        if (list.length > 0) {
+            return (
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            list.map(post => (
+                                <tr key={post.id}>
+                                    <td>{post.title}</td>
+                                    <td>BOTÕES</td>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+                </table>
+            )
+        }
+
     }
 
     render() {
@@ -50,7 +86,22 @@ export class Posts extends Component {
                     show={this.props.show}
                     onHide={this.search.bind(this, false)}
                     title={'Pesquisar Posts'}>
-                        Content Here ...
+                        <form onSubmit={this.handleSubmit.bind(this)}>
+                            <div className="form-group">
+                                <label htmlFor="pst">Post: </label>
+                                <input 
+                                    type="text" 
+                                    className="form-control" 
+                                    id="pst" 
+                                    aria-describedby="emailHelp" 
+                                    placeholder="Entre com título."
+                                    onChange={this.handleChange.bind(this)}/>
+                            </div>
+                            <button type="submit" className="btn btn-primary">Pesquisar</button>
+                        </form>
+
+                        {this.buildTable()}
+
                 </SearchModal>
 
                 <Content>
@@ -88,11 +139,13 @@ const mapStateToProps = state => (
         linesPerPage: state.posts.linesPerPage,
         page: state.posts.page,
         show: state.posts.show,
+        search: state.posts.search,
+        listFindedByTitle: state.posts.listFindedByTitle,
     }
 )
 
 const mapDispactchToProps = dispatch => bindActionCreators(
-    {paginate, setPage, openModal},
+    {paginate, setPage, openModal, setSearchField, findByPostTitle},
     dispatch
 )
 export default connect(mapStateToProps, mapDispactchToProps)(Posts);

@@ -14,9 +14,7 @@ const SearchModal = props => (
             </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <p>
-                {props.children}
-            </p>
+            {props.children}
         </Modal.Body>
     </Modal>
 )

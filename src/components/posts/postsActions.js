@@ -49,6 +49,14 @@ export function update(post, id) {
     }
 }
 
+export function findByPostTitle(title) {
+    const req = Axios.get(`${api_url}${path}/fingByTitle?title=${title}`);
+    return {
+        type: 'FINDBYPOSTITLE',
+        payload: req
+    }
+}
+
 export function resetCategory() {
     return {
         type: 'RESETCATEGORY'
@@ -70,6 +78,15 @@ export function openModal(show) {
         type: 'SETPOSTMODAL',
         payload: {
             show
+        }
+    }
+}
+
+export function setSearchField(search) {
+    return {
+        type: 'SETSEARCHFIELDPOST',
+        payload: {
+            search
         }
     }
 }
