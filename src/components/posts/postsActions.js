@@ -6,6 +6,7 @@ import { toastr } from 'react-redux-toastr';
 const api_url = environment();
 const path = '/posts';
 const messageCreate = 'Post salva com sucesso!'
+const messageRemove = 'Post removido com sucesso!'
 
 export function paginate(linesPerPage, page) {
     const req = Axios.get(`${api_url}${path}/paginate?linesPerPage=${linesPerPage}&page=${page}`);
@@ -49,6 +50,14 @@ export function update(post, id) {
     }
 }
 
+export function removePost(id) {
+    return dispatch => {
+        Axios.delete(`${api_url}${path}/${id}`)
+            .then(() => dispatch(acionsAfterSuccess(messageRemove)))
+            .catch(error => console.log(error));
+    }
+}
+
 export function findByPostTitle(title) {
     const req = Axios.get(`${api_url}${path}/fingByTitle?title=${title}`);
     return {
@@ -69,8 +78,8 @@ export function resetPostList() {
     }
 }
 
-function acionsAfterSuccess(messageCreate) {
-    toastr.success('Sucesso!', messageCreate);
+function acionsAfterSuccess(message) {
+    toastr.success('Sucesso!', message);
 }
 
 export function init() {

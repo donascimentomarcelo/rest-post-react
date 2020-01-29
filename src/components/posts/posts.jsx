@@ -4,7 +4,15 @@ import ContentHeader from '../../common/template/contentHeader'
 import { Link } from 'react-router'
 import Content from '../../common/template/content'
 import { bindActionCreators } from 'redux'
-import { paginate, setPage, openModal, setSearchField, findByPostTitle, resetPostList } from './postsActions'
+import { 
+    paginate, 
+    setPage, 
+    openModal, 
+    setSearchField, 
+    findByPostTitle, 
+    resetPostList, 
+    removePost 
+} from './postsActions'
 import { connect } from 'react-redux'
 import ListPagination from '../../common/pagination/listPagination'
 import ItemsPerPage from '../../common/pagination/itemsPerPage'
@@ -42,6 +50,12 @@ export class Posts extends Component {
         this.props.findByPostTitle(this.props.search);
     }
 
+    delete(id) {
+        this.props.removePost(id);
+        this.search(false);
+        this.props.paginate(this.props.linesPerPage, this.props.page);
+    }
+
     buildTable() {
         const list =  this.props.listFindedByTitle || [];
         if (list.length > 0) {
@@ -65,7 +79,7 @@ export class Posts extends Component {
                                         to={`/posts/${post.id}/edit`}>
                                         <i className="fa fa-pencil"></i>
                                     </Link>
-                                    <button className="btn btn-danger" onClick={() => null}>
+                                    <button className="btn btn-danger" onClick={this.delete.bind(this, post.id)}>
                                         <i className="fa fa-trash"></i>
                                     </button>
                                     </td>
@@ -156,7 +170,15 @@ const mapStateToProps = state => (
 )
 
 const mapDispactchToProps = dispatch => bindActionCreators(
-    {paginate, setPage, openModal, setSearchField, findByPostTitle, resetPostList},
+    {
+        paginate, 
+        setPage, 
+        openModal, 
+        setSearchField, 
+        findByPostTitle, 
+        resetPostList,
+        removePost
+    },
     dispatch
 )
 export default connect(mapStateToProps, mapDispactchToProps)(Posts);
