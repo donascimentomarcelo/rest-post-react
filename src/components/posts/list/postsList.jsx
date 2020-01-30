@@ -12,7 +12,7 @@ export class PostsList extends Component {
                     <Link className="btn btn-warning" to={`/posts/${post.id}/edit`}>
                         <i className="fa fa-pencil"></i>
                     </Link>
-                    <button className="btn btn-danger" onClick={() => this.props.remove(post)}>
+                    <button className="btn btn-danger" onClick={this.props.delete.bind(this, post.id)}>
                         <i className="fa fa-trash"></i>
                     </button>
                 </td>

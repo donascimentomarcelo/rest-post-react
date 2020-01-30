@@ -73,6 +73,10 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 listFindedByTitle: []
             }
+        case 'REMOVEPOST':
+            return {
+                ...state
+            }
 
         default:
             return state;

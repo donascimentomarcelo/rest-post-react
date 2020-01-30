@@ -17,6 +17,7 @@ import { connect } from 'react-redux'
 import ListPagination from '../../common/pagination/listPagination'
 import ItemsPerPage from '../../common/pagination/itemsPerPage'
 import SearchModal from '../../common/modal/search-modal'
+import { toastr } from 'react-redux-toastr';
 
 export class Posts extends Component {
 
@@ -51,9 +52,12 @@ export class Posts extends Component {
     }
 
     delete(id) {
-        this.props.removePost(id);
-        this.search(false);
-        this.props.paginate(this.props.linesPerPage, this.props.page);
+        this.props.removePost(id)
+            .then(() => {
+                toastr.success('Sucesso!', 'Post removido com sucesso!');
+                this.search(false);
+                this.props.paginate(this.props.linesPerPage, this.props.page);
+            });
     }
 
     buildTable() {
@@ -131,7 +135,8 @@ export class Posts extends Component {
 
                 <Content>
                     <PostsList
-                        list={this.props.content}/>
+                        list={this.props.content}
+                        delete={this.delete.bind(this)}/>
                     
                     <ListPagination
                         totalElements={this.props.totalElements}

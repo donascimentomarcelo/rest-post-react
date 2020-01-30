@@ -51,11 +51,11 @@ export function update(post, id) {
 }
 
 export function removePost(id) {
-    return dispatch => {
-        Axios.delete(`${api_url}${path}/${id}`)
-            .then(() => dispatch(acionsAfterSuccess(messageRemove)))
-            .catch(error => console.log(error));
-    }
+    const req = Axios.delete(`${api_url}${path}/${id}`);
+    return {
+        type: 'REMOVEPOST',
+        payload: req
+    };
 }
 
 export function findByPostTitle(title) {
