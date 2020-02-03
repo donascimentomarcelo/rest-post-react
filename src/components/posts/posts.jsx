@@ -64,34 +64,37 @@ export class Posts extends Component {
         const list =  this.props.listFindedByTitle || [];
         if (list.length > 0) {
             return (
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th>Título</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            list.map(post => (
-                                <tr key={post.id}>
-                                    <td>{post.title}</td>
-                                    <td>
-                                    <Link 
-                                        onClick={this.search.bind(this, false)}
-                                        className="btn btn-warning" 
-                                        to={`/posts/${post.id}/edit`}>
-                                        <i className="fa fa-pencil"></i>
-                                    </Link>
-                                    <button className="btn btn-danger" onClick={this.delete.bind(this, post.id)}>
-                                        <i className="fa fa-trash"></i>
-                                    </button>
-                                    </td>
-                                </tr>
-                            ))
-                        }
-                    </tbody>
-                </table>
+                <div>
+                    <hr/>
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th>Título</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                list.map(post => (
+                                    <tr key={post.id}>
+                                        <td>{post.title}</td>
+                                        <td>
+                                        <Link 
+                                            onClick={this.search.bind(this, false)}
+                                            className="btn btn-warning" 
+                                            to={`/posts/${post.id}/edit`}>
+                                            <i className="fa fa-pencil"></i>
+                                        </Link>
+                                        <button className="btn btn-danger" onClick={() => null}>
+                                            <i className="fa fa-trash"></i>
+                                        </button>
+                                        </td>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </table>
+                </div>
             )
         }
 
