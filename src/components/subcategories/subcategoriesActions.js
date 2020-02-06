@@ -87,3 +87,12 @@ export function findSubcategoryByCategory(categoryId) {
         payload: req
     };
 }
+
+export function setModal(show) {
+    return {
+        type: 'SETSUBCATEGORYMODAL',
+        payload: {
+            show
+        }
+    }
+}

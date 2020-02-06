@@ -11,6 +11,7 @@ const INITIAL_STATE = {
     numberOfElements: null,
     linesPerPage: 10,
     page: 0,
+    show: false,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -42,6 +43,11 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 list: action.payload.data,
             };
+        case 'SETSUBCATEGORYMODAL':
+            return {
+                ...state,
+                show: action.payload.show,
+            }
         default:
             return state;
     }

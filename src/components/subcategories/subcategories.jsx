@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import ContentHeader from '../../common/template/contentHeader'
 import Content from '../../common/template/content'
-import { getAll, update, remove, paginate, setPage } from './subcategoriesActions'
+import { getAll, update, remove, paginate, setPage, setModal } from './subcategoriesActions'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router'
 import ListPagination from '../../common/pagination/listPagination';
 import ItemsPerPage  from '../../common/pagination/itemsPerPage';
+import SearchModal from '../../common/modal/search-modal';
 
 export class Subcategories extends Component {
 
@@ -44,15 +45,27 @@ export class Subcategories extends Component {
         this.props.setPage(linesPerPage, this.props.page)
     }
 
+    search(value) {
+        console.log(value);
+        this.props.setModal(value);
+    }
+
     render() {
         return (
             <div>
                 <ContentHeader title='Subcategorias' small='listar subcategorias'/>
                 <div className="col-md-12 text-right">
+                    <Link className="btn btn-secundary" onClick={this.search.bind(this, true)}>
+                        <i className="fa fa-search"></i>
+                    </Link>
                     <Link className="btn btn-primary" to='/subcategories/new'>
                         <i className="fa fa-plus"></i>
                     </Link>
                 </div>
+                <SearchModal
+                    show={this.props.show}
+                    onHide={this.search.bind(this, false)}>
+                </SearchModal>
                 <Content>
                     <table className="table">
                         <thead>
@@ -97,10 +110,11 @@ const mapStateToProps = state => (
         numberOfElements: state.subcategories.numberOfElements, 
         linesPerPage: state.subcategories.linesPerPage, 
         page: state.subcategories.page, 
+        show: state.subcategories.show, 
     });
 
 const mapDispatchToProps = dispatch => bindActionCreators(
-    { getAll, update, remove, paginate, setPage }, 
+    { getAll, update, remove, paginate, setPage, setModal }, 
 dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Subcategories);
