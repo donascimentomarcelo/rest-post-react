@@ -4,12 +4,9 @@ import './../../styles/header.css'
 const ContentHeader = (props) => {
     return (
         <section className="content-header">
-            <h1>
+            <small>
                 {props.title}
-                <small>
-                    {props.small}
-                </small>
-            </h1>
+            </small>
         </section>
     )
 }
