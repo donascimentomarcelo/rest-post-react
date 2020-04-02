@@ -1,0 +1,30 @@
+.content-header {
+    position: relative;
+    padding: 15px 15px 0 15px;
+}
+
+.fixed .main-header {
+    top: 0;
+    right: 0;
+    left: 0;
+}
+
+.fixed .main-header, .fixed .main-sidebar, .fixed .left-side {
+    /* position: fixed; */
+}
+
+@media (max-width: 767px) {
+    .main-header {
+        position: relative;
+    }
+}
+
+.main-header {
+    position: relative;
+    height: 80px;
+    z-index: 1030;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+    display: block;
+}
