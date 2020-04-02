@@ -1,12 +1,18 @@
 import React from 'react';
 import './App.css';
-import Routes from './main/routes';
+import Routes from './routes/routes';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from './layouts/header/header';
+import Sidebar from './layouts/menu/sidebar';
 
 function App() {
   return (
-    <div className="App">
-        <Routes/>
+    <div className="wrapper">
+        <Header/>
+        <Sidebar/>
+        <div className="content-wrapper">
+            <Routes/>
+        </div>
     </div>
   );
 }

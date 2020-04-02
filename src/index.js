@@ -9,7 +9,7 @@ import { applyMiddleware, createStore } from 'redux';
 import promise from 'redux-promise';
 import multi from 'redux-multi';
 import thunk from 'redux-thunk';
-import RootReducer from './main/rootReducer';
+import RootReducer from './reducers/rootReducer';
 
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__
