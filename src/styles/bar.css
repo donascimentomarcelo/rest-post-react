@@ -1,0 +1,60 @@
+.skin-blue .wrapper, .skin-blue .main-rightbar, .skin-blue .right-side {
+    background-color: #121212;
+}
+
+.fixed .main-header, .fixed .main-rightbar, .fixed .right-side {
+    position: fixedmain-rightbar;
+}
+
+.main-rightbar, .right-side {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding-top: 50px;
+    min-height: 100%;
+    width: 230px;
+    z-index: 810;
+    -webkit-transition: -webkit-transform .3s ease-in-out,width .3s ease-in-out;
+    -moz-transition: -moz-transform .3s ease-in-out,width .3s ease-in-out;
+    -o-transition: -o-transform .3s ease-in-out,width .3s ease-in-out;
+    transition: transform .3s ease-in-out,width .3s ease-in-out;
+    margin-top: 2%;
+}
+
+.slimScrollDiv {
+    position: relative;
+    overflow: hidden;
+    width: auto;
+    height: 743px;
+}
+
+.rightbar-menu, .main-rightbar .user-panel, .rightbar-menu>li.header {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.rightbar-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.rightbar-menu>li {
+    position: relative;
+    margin: 30px;
+    padding: 0;
+}
+
+.rightbar-menu, .main-rightbar .user-panel, .rightbar-menu>li.header {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+@media (max-width: 768px) {
+    .main-rightbar, .right-side {
+        position: fixed;
+        padding-top: 0px;
+        margin-top: 0%;
+    }
+}
