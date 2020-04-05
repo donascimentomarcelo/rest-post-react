@@ -7,8 +7,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import { login } from '../../../actions/loginAction'
 import { withRouter } from "react-router";
-import { setToken } from '../../../services/loginService';
-
+import { setToken, isAuthenticated } from '../../../services/loginService';
 
 export class LoginForm extends Component {
 
@@ -17,6 +16,7 @@ export class LoginForm extends Component {
             .then(resp => {
                 setToken(resp.payload.headers.authorization);
                 const { history } = this.props;
+                this.props.isAuthenticated()
                 history.push('/dashboard');
             })
             .catch(error => console.log(error));
@@ -68,6 +68,7 @@ const mapStateToProps = state => (
 const mapDispatchToProps = dispatch => bindActionCreators(
     { 
         login,
+        isAuthenticated,
     },
     dispatch
 );

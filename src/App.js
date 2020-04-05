@@ -1,22 +1,52 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import Routes from './routes/routes';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './layouts/header/header';
 import Sidebar from './layouts/menu/sidebar';
 import Rightbar from './layouts/bars/rightbar';
+import { isAuthenticated } from './services/loginService';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
 
-function App() {
-  return (
-    <div className="wrapper">
+export class App extends Component {
+
+  UNSAFE_componentWillMount() {
+    this.checkAuthAndReturnComponent();
+  }
+
+  checkAuthAndReturnComponent = () => this.props.isAuthenticated();
+
+  showSidebar = () => this.props.isLogged ? <Sidebar/> :  null;
+
+  showRightbar = () => this.props.isLogged ? <Rightbar/> :  null;
+  
+  render() {
+    return (
+      <div className="wrapper">
         <Header/>
-        <Sidebar/>
-        <div className="content-wrapper">
-            <Routes/>
-        </div>
-        <Rightbar/>
+        {this.showSidebar()}
+          <div className="content-wrapper">
+              <Routes/>
+          </div>
+        {this.showRightbar()}
     </div>
-  );
+    )
+  }
 }
 
-export default App;
+const mapStateToProps = state => (
+  {
+      enableReinitialize: true,
+      isLogged: state.appReducer.logged,
+  }
+);
+
+const mapDispatchToProps = dispatch => bindActionCreators(
+  { 
+    isAuthenticated,
+  },
+  dispatch
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
