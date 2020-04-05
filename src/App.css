@@ -45,12 +45,14 @@ body {
   z-index: 820;
 }
 
-@media (max-width: 767px) {
-  .fixed .content-wrapper, .fixed .right-side {
-      /* padding-top: 100px; */
-  }
+@media (max-width: 768px) {
 
   .content-wrapper {
     margin-left: 132px;
+    margin-right: 220px;
+  }
+
+  .fixed .main-header, .fixed .main-sidebar, .fixed .left-side {
+      position: fixed;
   }
 }
