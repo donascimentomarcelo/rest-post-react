@@ -1,3 +1,11 @@
+i {
+    margin-right: 10%;
+}
+
+a {
+    text-decoration: none !important;
+}
+
 .skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
     background-color: #121212;
 }
@@ -44,7 +52,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 .sidebar-menu>li {
     position: relative;
-    margin: 0;
+    margin: 30px;
     padding: 0;
 }
 
@@ -62,19 +70,26 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 .skin-blue .sidebar-menu>li>a {
     border-left: 3px solid transparent;
 }
+
 .skin-blue .sidebar a {
     color: #b8c7ce;
 }
+
 .sidebar-menu li>a {
     position: relative;
 }
+
 .sidebar-menu>li>a {
     padding: 12px 5px 12px 15px;
     display: block;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     .main-sidebar, .left-side {
         width: 132px;
+    }
+
+    .sidebar-menu>li {
+        margin: 14px;
     }
 }

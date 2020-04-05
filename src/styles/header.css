@@ -1,3 +1,19 @@
+a {
+    color: white !important;
+    text-decoration: none !important;
+    background-color: transparent !important;
+}
+
+a:hover {
+    color: #9E9E9E !important;
+    text-decoration: underline !important;
+}
+
+i {
+    padding-top: 2%;
+    padding-left: 3%;
+}
+
 .content-header {
     position: relative;
     padding: 15px 15px 0 15px;
