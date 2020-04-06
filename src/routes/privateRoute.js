@@ -1,17 +1,18 @@
 import React from 'react'
-import { Route } from 'react-router';
-import Login from '../components/login/login';
+import { Route, Redirect } from 'react-router';
 import { isAuthenticated } from '../services/loginService';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
-const PrivateRoute = (props) => {
-    return (
-        props.isLogged
-            ? <Route path={props.path} component={props.component}/>
-            : <Route from='*' to='/login' component={Login}/>
-    )
-}
+const PrivateRoute = ({ component: Component, ...rest }) => (
+    <Route
+    { ...rest }
+    render={ props => 
+        rest.isLogged
+        ? ( <Component { ...props }/> )
+        : ( <Redirect from='*' to='/'/> )
+    }/>
+)
 
 const mapStateToProps = state => (
     {

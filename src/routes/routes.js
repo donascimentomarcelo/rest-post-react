@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Switch } from 'react-router';
+import { Route, Redirect, Switch } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 
 import Login from '../components/login/login';
@@ -10,9 +10,9 @@ import PrivateRoute from './privateRoute';
 const Routes = props => (
     <BrowserRouter>
         <Switch>
-            <PrivateRoute path='/login' component={Login}/>
+            <Route exact path='/' component={Login}/>
             <PrivateRoute path='/dashboard' component={Dashboard}/>
-            <Redirect from='*' to='/login'/>
+            <Redirect from='*' to='/'/>
         </Switch>
     </BrowserRouter>
 );
