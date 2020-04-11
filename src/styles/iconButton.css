@@ -1,0 +1,18 @@
+button {
+    margin-left: 10px !important;
+}
+
+.btn-outline-secondary:not(:disabled):not(.disabled).active, .btn-outline-secondary:not(:disabled):not(.disabled):active, .show>.btn-outline-secondary.dropdown-toggle {
+    color: #fff;
+    background-color: #1f1f1f !important;
+    border-color: #121212 !important;
+}
+
+.btn-outline-secondary:hover {
+    background-color:#121212 !important;
+}
+
+.btn-outline-secondary {
+    color: #939393 !important;
+    border-color: #939393 !important;
+}
