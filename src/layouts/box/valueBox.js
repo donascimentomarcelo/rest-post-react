@@ -14,7 +14,7 @@ const ValueBox = (props) => {
             <div className={checkBoxClass(props)}>
                 <div className="inner">
                     <h3>{props.value}</h3>
-                    <p>{props.text}</p>
+                    <p className="text">{props.text}</p>
                 </div>
                 <div className="icon">
                     <i className={`fa fa-${props.icon}`}></i>

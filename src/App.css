@@ -42,6 +42,7 @@ body {
   -o-transition: -o-transform .3s ease-in-out,margin .3s ease-in-out;
   transition: transform .3s ease-in-out,margin .3s ease-in-out;
   margin-left: 230px;
+  margin-right: 230px;
   z-index: 820;
 }
 

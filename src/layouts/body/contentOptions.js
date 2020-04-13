@@ -6,7 +6,16 @@ import './../../styles/content.css'
 
 const ContentOptions = (props) => {
 
-    const { buttonNew, buttonSearch, actionNew, actionSearch} = props;
+    const { 
+        buttonNew, 
+        buttonSearch, 
+        buttonTrash,
+        buttonBack,
+        actionNew, 
+        actionSearch, 
+        actionTrash,
+        actionBack
+    } = props;
 
     const setButtonNew = () => {
         if (buttonNew) {
@@ -20,10 +29,24 @@ const ContentOptions = (props) => {
         }
     }
 
+    const setButtonTrash = () => {
+        if (buttonTrash) {
+            return (<IconButton icon='fa fa-trash' action={actionTrash}/>);
+        }
+    }
+
+    const setButtonBack = () => {
+        if (buttonBack) {
+            return (<IconButton icon='fa fa-arrow-alt-circle-left' action={actionBack}/>);
+        }
+    }
+
     return (
         <div className='content-option'>
             {setButtonNew()}
             {setButtonSearch()}
+            {setButtonTrash()}
+            {setButtonBack()}
         </div>
     )
 }

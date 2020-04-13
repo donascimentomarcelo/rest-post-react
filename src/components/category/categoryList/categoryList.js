@@ -7,12 +7,11 @@ import ContentHeader from '../../../layouts/header/contentHeader';
 import ContentOptions from '../../../layouts/body/contentOptions';
 
 import './../../../styles/category.css';
+import { withRouter } from 'react-router';
 
 export class CategoryList extends Component {
 
-    componentDidUpdate () {
-        console.log(this.props)
-    }
+    componentDidUpdate = () => console.log(this.props);
 
     showCategoriesCards = () => {
         const {categories} = this.props || [];
@@ -29,8 +28,9 @@ export class CategoryList extends Component {
         );
     }
 
-    actionNew = () => {console.log('action n')}
-    actionSearch = () => {console.log('action s')}
+    actionNew = () => this.props.history.push('/categories/new');
+
+    actionSearch = () => console.log('action s');
 
     render() {
         return (
@@ -51,4 +51,4 @@ export class CategoryList extends Component {
     }
 }
 
-export default CategoryList;
+export default withRouter(CategoryList);

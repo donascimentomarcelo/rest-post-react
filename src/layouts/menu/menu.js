@@ -6,7 +6,7 @@ const Menu = () => {
     return (
         <ul className="sidebar-menu">
             <MenuItem path='#' label='Início' icon='home'/>
-            <MenuItem path='/categories' label='Categorias' icon='list-ol'/>
+            <MenuItem path='/categories/list' label='Categorias' icon='list-ol'/>
         </ul>
     )
 }

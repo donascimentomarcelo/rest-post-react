@@ -12,7 +12,9 @@ export class Category extends Component {
 
     render() {
         return (
-            <CategoryList categories={this.props.categories}/>
+            <CategoryList 
+                categories={this.props.categories}
+                history={this.props.history}/>
         )
     }
 }
