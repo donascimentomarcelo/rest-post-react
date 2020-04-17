@@ -8,7 +8,7 @@ import ContentOptions from '../../../layouts/body/contentOptions';
 import FormGroupLabel from '../../../layouts/form/formGroupLabel';
 import ButtonGroup from '../../../layouts/buttons/buttonGroup';
 
-import { saveCategory, initCategoryForm } from './../../../actions/categoryAction';
+import { saveCategory, updateCategory, initCategoryForm } from './../../../actions/categoryAction';
 
 import * as CONST from './../../../helpers/constants';
 
@@ -22,26 +22,34 @@ export class CategoryForm extends Component {
 
     componentDidMount = () => console.log('Componente form');
 
-    submit = value => this.props.location.pathname === CONST.CATEGORIES_NEW ? this.newCategory(value) : this.updateCategory(value);
+    submit = category => this.props.location.pathname === CONST.CATEGORIES_NEW ? this.newCategory(category) : this.updateCategory(category);
 
-    actionBack = () => this.history.goBack();
+    actionBack = () => {
+        this.props.initCategoryForm();
+        this.history.goBack();
+    };
 
-    newCategory = value => {
-        this.props.saveCategory(value, this.history)
-            .then(() => this.actionsAfterCreate())
+    newCategory = category => {
+        this.props.saveCategory(category, this.history)
+            .then(() => this.actionsAfterSuccess('Categoria criada com sucesso!'))
             .catch(error => console.log(error));
     }
 
-    actionsAfterCreate = () => {
-        this.props.initCategoryForm()
-        this.history.goBack();
-        toastr.success('Sucesso!', 'Categoria criada com sucesso!');
+    actionsAfterSuccess = (msg) => {
+        this.actionBack();
+        toastr.success('Sucesso!', msg);
     }
 
-    updateCategory = value => console.log(value);
+    updateCategory = category => {
+        const id = this.props.match.params.id;
+        this.props.updateCategory(category, id)
+            .then(() => this.actionsAfterSuccess('Categoria atualizada com sucesso!'))
+            .catch(error => console.log(error));
+        console.log(this.props.match.params.id)
+    };
 
     render() {
-        const { handleSubmit, pristine, reset, submitting } = this.props;
+        const { handleSubmit, pristine, submitting } = this.props;
         return (
             <div className='category-container'>
             <ContentHeader title='Formulário de Categoria'/>
@@ -98,6 +106,7 @@ const mapStateToProps = (state) => (
 const mapDispatchToProps = dispatch => bindActionCreators (
     {
         saveCategory,
+        updateCategory,
         initCategoryForm,
     },
     dispatch

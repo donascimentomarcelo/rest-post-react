@@ -11,10 +11,18 @@ export function getAllCategories() {
     };
 }
 
-export function saveCategory(values) {
-    const req = Axios.post(`${ENV.API_URL}${PATH.CATEGORIES}`, values);
+export function saveCategory(category) {
+    const req = Axios.post(`${ENV.API_URL}${PATH.CATEGORIES}`, category);
     return {
         type: 'CATEGORY_CREATED',
+        payload: req
+    };
+}
+
+export function updateCategory(category, id) {
+    const req = Axios.put(`${ENV.API_URL}${PATH.CATEGORIES}/${id}`, category);
+    return {
+        type: 'CATEGORY_UPDATED',
         payload: req
     };
 }
@@ -22,5 +30,11 @@ export function saveCategory(values) {
 export function initCategoryForm() {
     return [
         initialize('categoryForm')
+    ];
+}
+
+export function setCategoryForm(category) {
+    return [
+        initialize('categoryForm', category)
     ];
 }

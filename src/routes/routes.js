@@ -16,6 +16,7 @@ const Routes = props => (
             <PrivateRoute path='/dashboard' component={Dashboard}/>
             <PrivateRoute path='/categories/list' component={Category}/>
             <PrivateRoute path='/categories/new' component={CategoryForm}/>
+            <PrivateRoute path='/categories/:id/edit' component={CategoryForm}/>
             <Redirect from='*' to='/'/>
         </Switch>
     </BrowserRouter>

@@ -9,9 +9,21 @@ import ContentOptions from '../../../layouts/body/contentOptions';
 import './../../../styles/category.css';
 import { withRouter } from 'react-router';
 
+import { setCategoryForm } from '../../../actions/categoryAction';
+
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux'
+
 export class CategoryList extends Component {
 
     componentDidUpdate = () => console.log(this.props);
+
+    actionEdit = (category) => {
+        this.props.setCategoryForm(category);
+        this.props.history.push(`/categories/${category.id}/edit`)
+    };
+    
+    actionDelete = (id) => console.log(id);
 
     showCategoriesCards = () => {
         const {categories} = this.props || [];
@@ -21,9 +33,12 @@ export class CategoryList extends Component {
                     cols='6 6' 
                     color='gray' 
                     icon={category.icon}
-                    type='small'
+                    type='medium'
                     value={category.name}
-                    text={category.description}/>
+                    text={category.description}
+                    showOptions={true}
+                    actionEdit={this.actionEdit.bind(this, category)}
+                    actionDelete={this.actionDelete.bind(this, category)}/>
             )
         );
     }
@@ -51,4 +66,11 @@ export class CategoryList extends Component {
     }
 }
 
-export default withRouter(CategoryList);
+const mapDispatchToProps = dispatch => bindActionCreators(
+    {
+        setCategoryForm
+    }, 
+    dispatch
+);
+
+export default withRouter(connect(null, mapDispatchToProps)(CategoryList));
