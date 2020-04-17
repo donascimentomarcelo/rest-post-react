@@ -20,11 +20,7 @@ export const callbackErrorReq = error => {
 export const callbackErrorRes = error => {
     const requestConfig = error.config;
 
-    if (error.response.status === 401) {     
-        return Axios(requestConfig);
-    }
-
-    if (error.response.status === 403) {
+    if (error.response.status === 401 || error.response.status === 403) {
         localStorage.setItem('token', null);
         return Axios(requestConfig);
     }

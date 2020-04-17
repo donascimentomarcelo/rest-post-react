@@ -14,14 +14,28 @@ export class Dashboard extends Component {
                 <Content>
                     <Row>
                         <ValueBox
-                            cols='12 12 12 5' 
+                            cols='12 12 12 6' 
                             color='gray' 
                             icon='list-ol'
                             type='large'
                             value={500}
                             text='Total de categorias'/>
                         <ValueBox
-                            cols='12 12 12 5' 
+                            cols='12 12 12 6' 
+                            color='gray' 
+                            icon='list-ol'
+                            type='large'
+                            value={500}
+                            text='Total de categorias'/>
+                        <ValueBox
+                            cols='12 12 12 6' 
+                            color='gray' 
+                            icon='list-ol'
+                            type='large'
+                            value={500}
+                            text='Total de categorias'/>
+                        <ValueBox
+                            cols='12 12 12 6' 
                             color='gray' 
                             icon='list-ol'
                             type='large'
