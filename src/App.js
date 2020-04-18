@@ -18,6 +18,8 @@ import {
   callbackErrorReq,
 } from './interceptors/interceptors';
 
+import Message from './layouts/messages/message';
+
 export class App extends Component {
 
   UNSAFE_componentWillMount() {
@@ -39,6 +41,7 @@ export class App extends Component {
               <Routes/>
           </div>
         {this.showRightbar()}
+        <Message/>
     </div>
     )
   }
