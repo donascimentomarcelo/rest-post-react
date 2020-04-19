@@ -27,6 +27,21 @@ export function updateCategory(category, id) {
     };
 }
 
+export function deleteCategory(id) {
+    const req = Axios.delete(`${ENV.API_URL}${PATH.CATEGORIES}/${id}`);
+    return {
+        type: 'CATEGORY_DELETED',
+        payload: req
+    };
+}
+
+export function setCategoryId(categoryId) {
+    return {
+        type: 'SET_CATEGORYID',
+        payload: categoryId
+    };
+}
+
 export function initCategoryForm() {
     return [
         initialize('categoryForm')

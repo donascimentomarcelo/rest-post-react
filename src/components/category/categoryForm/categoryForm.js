@@ -31,21 +31,20 @@ export class CategoryForm extends Component {
 
     newCategory = category => {
         this.props.saveCategory(category, this.history)
-            .then(() => this.actionsAfterSuccess('Categoria criada com sucesso!'))
+            .then(() => this.actionsAfterSuccess(CONST.CATEGORY_CREATED))
             .catch(error => console.log(error));
     }
 
-    actionsAfterSuccess = (msg) => {
+    actionsAfterSuccess = msg => {
         this.actionBack();
-        toastr.success('Sucesso!', msg);
+        toastr.success(CONST.SUCCESS, msg);
     }
 
     updateCategory = category => {
         const id = this.props.match.params.id;
         this.props.updateCategory(category, id)
-            .then(() => this.actionsAfterSuccess('Categoria atualizada com sucesso!'))
+            .then(() => this.actionsAfterSuccess(CONST.CATEGORY_UPDATED))
             .catch(error => console.log(error));
-        console.log(this.props.match.params.id)
     };
 
     render() {

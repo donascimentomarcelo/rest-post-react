@@ -9,21 +9,33 @@ import ContentOptions from '../../../layouts/body/contentOptions';
 import './../../../styles/category.css';
 import { withRouter } from 'react-router';
 
-import { setCategoryForm } from '../../../actions/categoryAction';
+import { setCategoryForm, setCategoryId } from '../../../actions/categoryAction';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 
+import { toastr } from 'react-redux-toastr';
+
+import * as CONST from './../../../helpers/constants'
+
 export class CategoryList extends Component {
 
-    componentDidUpdate = () => console.log(this.props);
+    toastrConfirmOptions = {
+        onOk: () => this.props.delete(this.props.categoryId),
+        onCancel: () => null,
+        okText: CONST.YES,
+        cancelText: CONST.NO,
+    };
 
     actionEdit = (category) => {
         this.props.setCategoryForm(category);
         this.props.history.push(`/categories/${category.id}/edit`)
     };
     
-    actionDelete = (id) => console.log(id);
+    actionDelete = (category) => {
+        this.props.setCategoryId(category.id);
+        toastr.confirm(CONST.CATEGORY_ALERT, this.toastrConfirmOptions);
+    };
 
     showCategoriesCards = () => {
         const {categories} = this.props || [];
@@ -66,11 +78,18 @@ export class CategoryList extends Component {
     }
 }
 
+const mapStateToProps = state => (
+    {
+        categoryId: state.categoryReducer.categoryId,
+    }
+);
+
 const mapDispatchToProps = dispatch => bindActionCreators(
     {
-        setCategoryForm
+        setCategoryForm,
+        setCategoryId,
     }, 
     dispatch
 );
 
-export default withRouter(connect(null, mapDispatchToProps)(CategoryList));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CategoryList));
