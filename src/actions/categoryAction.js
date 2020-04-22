@@ -35,11 +35,39 @@ export function deleteCategory(id) {
     };
 }
 
+export function findByCategoryName(name) {
+    const req = Axios.get(`${ENV.API_URL}${PATH.CATEGORIES}/findByName?name=${name}`);
+    return {
+        type: 'CATEGORY_SEARCHED',
+        payload: req
+    };
+}
+
 export function setCategoryId(categoryId) {
     return {
         type: 'SET_CATEGORYID',
         payload: categoryId
     };
+}
+
+export function openModal(show) {
+    return  {
+        type: 'SET_CATEGORY_MODAL',
+        payload: show
+    }
+}
+
+export function resetCategoriesSearched() { 
+    return {
+        type: 'CATEGORY_SEARCHED',
+        payload: []
+    };
+}
+
+export function resetCategoryFieldSearch() {
+    return [
+        initialize('categorySearchForm')
+    ];
 }
 
 export function initCategoryForm() {

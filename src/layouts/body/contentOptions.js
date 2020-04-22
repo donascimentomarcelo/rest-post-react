@@ -11,10 +11,13 @@ const ContentOptions = (props) => {
         buttonSearch, 
         buttonTrash,
         buttonBack,
+        buttonReload,
+        
         actionNew, 
         actionSearch, 
         actionTrash,
-        actionBack
+        actionBack,
+        actionReload,
     } = props;
 
     const setButtonNew = () => {
@@ -41,12 +44,19 @@ const ContentOptions = (props) => {
         }
     }
 
+    const setButtonReload = () => {
+        if (buttonReload) {
+            return (<IconButton icon='fa fa-sync-alt' action={actionReload}/>);
+        }
+    }
+
     return (
         <div className='content-option'>
             {setButtonNew()}
             {setButtonSearch()}
             {setButtonTrash()}
             {setButtonBack()}
+            {setButtonReload()}
         </div>
     )
 }

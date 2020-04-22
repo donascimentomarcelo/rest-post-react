@@ -1,0 +1,82 @@
+.my-modal-background.active {
+    display: block;   
+}
+
+.modal-dialog.active { 
+    animation: fade-in-show 0.5s;
+}
+
+.my-modal-background.hide, .modal-dialog.hide {
+    display: none;
+    animation: fade-in-hide 0.5s;
+}
+
+.my-modal-background {
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+.my-modal-content {
+    width: 80% !important;
+    height: 70vh;
+    opacity: 1;
+    z-index: 9999;
+    background-color: #fff;
+    margin: 30px auto;
+    border-radius: 8px;
+}
+
+.modal-content {
+    background-color: #121212 !important;
+}
+
+.modal-dialog {
+    max-width: 700px !important;
+}
+
+.scrollbar {
+	overflow-y: scroll;
+	margin-bottom: 25px;
+}
+
+#style-scroll::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+#style-scroll::-webkit-scrollbar {
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+#style-scroll::-webkit-scrollbar-thumb {
+	background-color: #000000;
+	border: 2px solid #555555;
+}
+
+@keyframes fade-in-show {
+    0% {
+        opacity: 0;
+        transform:  scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fade-in-hide {
+    0% {
+        opacity: 1;
+        transform:  scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}

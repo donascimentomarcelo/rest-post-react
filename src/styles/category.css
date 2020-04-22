@@ -1,3 +1,4 @@
-.category-container {
-    /* margin-right: 15%; */
+.modal-table-size {
+    overflow: auto;
+    height: 200px;
 }

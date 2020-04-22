@@ -57,17 +57,21 @@ export class CategoryList extends Component {
 
     actionNew = () => this.props.history.push('/categories/new');
 
-    actionSearch = () => console.log('action s');
+    actionSearch = () => this.props.actionSearch(true);
+
+    actionReload = () => this.props.actionReload();
 
     render() {
         return (
             <div className='category-container'>
                 <ContentHeader title='Categorias'/>
                 <ContentOptions
-                    buttonNew={true}
-                    buttonSearch={true}
+                    buttonNew={this.props.buttonNew}
+                    buttonSearch={this.props.buttonSearch}
+                    buttonReload={this.props.buttonReload}
                     actionNew={this.actionNew}
-                    actionSearch={this.actionSearch}/>
+                    actionSearch={this.actionSearch}
+                    actionReload={this.actionReload}/>
                 <Content>
                     <Row>
                         {this.showCategoriesCards()}
@@ -81,6 +85,9 @@ export class CategoryList extends Component {
 const mapStateToProps = state => (
     {
         categoryId: state.categoryReducer.categoryId,
+        buttonNew: state.categoryReducer.buttonNew,
+        buttonSearch: state.categoryReducer.buttonSearch,
+        buttonReload: state.categoryReducer.buttonReload,
     }
 );
 
