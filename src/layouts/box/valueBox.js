@@ -14,8 +14,8 @@ const ValueBox = (props) => {
         value,
         text,
         icon,
-        actionEdit,
-        actionDelete,
+        edit,
+        confirm,
     } = props;
 
     const checkBoxClass = () => {
@@ -28,8 +28,8 @@ const ValueBox = (props) => {
         if (showOptions) {
             return (
                 <div className="align-button-box">
-                    <IconButton icon='fa fa-pencil-alt' action={actionEdit}/>
-                    <IconButton icon='fa fa-trash' action={actionDelete}/>
+                    <IconButton icon='fa fa-pencil-alt' action={edit}/>
+                    <IconButton icon='fa fa-trash' action={confirm}/>
                 </div>
             )
         }

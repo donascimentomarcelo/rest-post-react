@@ -13,22 +13,22 @@ const ContentOptions = (props) => {
         buttonBack,
         buttonReload,
         
-        actionNew, 
-        actionSearch, 
+        create, 
+        search, 
         actionTrash,
         actionBack,
-        actionReload,
+        load,
     } = props;
 
     const setButtonNew = () => {
         if (buttonNew) {
-            return (<IconButton icon='fa fa-plus' action={actionNew}/>);
+            return (<IconButton icon='fa fa-plus' action={create}/>);
         }
     }
 
     const setButtonSearch = () => {
         if (buttonSearch) {
-            return (<IconButton icon='fa fa-search' action={actionSearch}/>);
+            return (<IconButton icon='fa fa-search' action={search}/>);
         }
     }
 
@@ -46,7 +46,7 @@ const ContentOptions = (props) => {
 
     const setButtonReload = () => {
         if (buttonReload) {
-            return (<IconButton icon='fa fa-sync-alt' action={actionReload}/>);
+            return (<IconButton icon='fa fa-sync-alt' action={load}/>);
         }
     }
 
