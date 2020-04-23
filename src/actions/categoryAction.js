@@ -64,6 +64,13 @@ export function resetCategoriesSearched() {
     };
 }
 
+export function removeCategoryFromSearch(id) {
+    return {
+        type: 'REMOVE_CATEGORY_FROM_SEARCH',
+        payload: id
+    }
+}
+
 export function resetCategoryFieldSearch() {
     return [
         initialize('categorySearchForm')

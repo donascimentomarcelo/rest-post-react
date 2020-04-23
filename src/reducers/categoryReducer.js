@@ -37,6 +37,12 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 categoriesSearched: action.payload.data,
             }
+        
+        case 'REMOVE_CATEGORY_FROM_SEARCH':
+            return {
+                ...state,
+                categoriesSearched: state.categoriesSearched.filter(category => category.id !== state.categoryId)
+            }
     
         default:
             return state;

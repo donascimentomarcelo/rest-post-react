@@ -12,6 +12,7 @@ import {
     resetCategoryFieldSearch,
     setCategoryId,
     setCategoryForm,
+    removeCategoryFromSearch,
 } from '../../actions/categoryAction';
 import CategoryList from './categoryList/categoryList';
 import SearchModal from '../../layouts/modal/searchModal';
@@ -36,6 +37,10 @@ export class Category extends Component {
             .then(() => {
                 this.load();
                 toastr.success(CONST.SUCCESS, CONST.CATEGORY_REMOVED);
+                if (this.props.categoryId) {
+                    this.props.removeCategoryFromSearch(this.props.categoryId);
+                    this.props.setCategoryId(null);
+                }
             })
             .catch(error => console.log(error))
     }
@@ -49,8 +54,8 @@ export class Category extends Component {
     submit = value => this.props.findByCategoryName(value.name);
 
     showCategoriesCards = () => {
-        const {categoriesSearched} = this.props || [];
-        if (categoriesSearched) {
+        const categoriesSearched = this.props.categoriesSearched || [];
+        if (categoriesSearched.length) {
             return (
                 <div className="row modal-table-size">
                     {
@@ -149,6 +154,7 @@ const mapDispatchToProps = dispatch => bindActionCreators(
         resetCategoryFieldSearch,
         setCategoryId,
         setCategoryForm,
+        removeCategoryFromSearch,
     },
     dispatch
 );

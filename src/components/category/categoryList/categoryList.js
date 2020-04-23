@@ -12,7 +12,7 @@ import './../../../styles/category.css';
 export class CategoryList extends Component {
 
     showCategoriesCards = () => {
-        const {categories} = this.props || [];
+        const categories = this.props.categories || [];
         return categories.map(category => (
                 <ValueBox
                     key={category.id}
