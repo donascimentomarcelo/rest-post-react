@@ -24,9 +24,7 @@ import * as CONST from './../../helpers/constants';
 
 export class Category extends Component {
 
-    UNSAFE_componentWillMount () {
-        this.load();
-    }
+    UNSAFE_componentWillMount = () => this.load();
 
     load = () => this.props.getAllCategories();
 

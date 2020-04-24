@@ -24,7 +24,7 @@ export class CategoryList extends Component {
                     text={category.description}
                     showOptions={true}
                     edit={this.edit.bind(this, category)}
-                    confirm={this.confirm.bind(this, category)}/>
+                    confirm={this.confirm.bind(this, category.id)}/>
             )
         );
     }
@@ -37,7 +37,7 @@ export class CategoryList extends Component {
 
     edit = category => this.props.edit(category);
     
-    confirm = category => this.props.confirm(category)
+    confirm = id => this.props.confirm(id);
 
     render() {
         return (
