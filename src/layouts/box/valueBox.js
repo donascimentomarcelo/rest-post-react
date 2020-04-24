@@ -43,7 +43,7 @@ const ValueBox = (props) => {
                     <p className="text">{text}</p>
                 </div>
                 <div className="icon">
-                    <i className={`fa fa-${icon}`}></i>
+                    <i className={icon}></i>
                 </div>
                 {showButtonsOptions()}
             </div>

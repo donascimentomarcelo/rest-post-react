@@ -7,6 +7,7 @@ const Menu = () => {
         <ul className="sidebar-menu">
             <MenuItem path='#' label='Início' icon='home'/>
             <MenuItem path='/categories/list' label='Categorias' icon='list-ol'/>
+            <MenuItem path='/subcategories/list' label='Subcategorias' icon='list-ul'/>
         </ul>
     )
 }

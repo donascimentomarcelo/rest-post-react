@@ -7,6 +7,8 @@ export const CATEGORY_CREATED = 'Categoria criada com sucesso!';
 export const CATEGORY_UPDATED = 'Categoria atualizada com sucesso!';
 export const CATEGORY_SEARCH = 'Pesquisar Categorias';
 
+export const SUBCATEGORIES = '/subcategories';
+
 export const YES = 'Sim';
 export const NO = 'Não';
 
