@@ -4,7 +4,11 @@ import { reduxForm, Field } from 'redux-form';
 import { toastr } from 'react-redux-toastr';
 import { bindActionCreators } from 'redux';
 import { getAllCategories } from '../../../actions/categoryAction';
-import { saveSubcategory } from '../../../actions/subcategoryAction';
+import { 
+    saveSubcategory,
+    updateSubategory,
+    setSubcategoryForm, 
+} from '../../../actions/subcategoryAction';
 
 import ContentHeader from '../../../layouts/header/contentHeader';
 import ContentOptions from '../../../layouts/body/contentOptions';
@@ -31,11 +35,15 @@ export class SubcategoryForm extends Component {
     }
     
     updateSubategory = subcategory => {
-
+        const id = this.props.match.params.id;
+        this.props.updateSubategory(subcategory, id)
+            .then(() => this.actionsAfterSuccess(CONST.SUBCATEGORY_UPDATED))
+            .catch(error => console.log(error));
     }
     
     actionBack = () => {
         this.props.history.goBack();
+        this.props.setSubcategoryForm(null);
     }
 
     onChange = event => console.log(event.target.value);
@@ -99,13 +107,15 @@ SubcategoryForm = reduxForm(
 )(SubcategoryForm);
 
 const mapStateToProps = (state) => ({
-    categories: state.categoryReducer.categories
+    categories: state.categoryReducer.categories,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators(
     {
         getAllCategories,
         saveSubcategory,
+        updateSubategory,
+        setSubcategoryForm,
     },
     dispatch
 );

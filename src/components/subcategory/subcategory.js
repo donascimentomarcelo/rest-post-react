@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { toastr } from 'react-redux-toastr';
 import { 
-    getAllSubcategories 
+    getAllSubcategories,
+    setSubcategoryForm,
+    setSubcategoryId,
+    deleteSubcategory,
 } from '../../actions/subcategoryAction';
 import SubcategoryList from './subcategoryList/subcategoryList';
 import { bindActionCreators } from 'redux';
@@ -17,9 +21,29 @@ export class Subcategory extends Component {
     
     search = value => console.log(value);
 
-    edit = value => console.log(value);
+    edit = subcategory => {
+        const object = {
+            categoryId: subcategory.category.id,
+            name: subcategory.name,
+            icon: subcategory.icon,
+        };
+        this.props.setSubcategoryForm(object);
+        this.props.history.push(`/subcategories/${subcategory.id}/edit`);
+    }
 
-    confirm = id => console.log(id);
+    confirm = id => {
+        this.props.setSubcategoryId(id);
+        toastr.confirm(CONST.SUBCATEGORY_ALERT, this.toastrConfirmOptions);
+    };
+
+    delete = id => {
+        this.props.deleteSubcategory(id)
+            .then(() => {
+                this.load();
+                toastr.success(CONST.SUCCESS, CONST.SUBCATEGORY_REMOVED);
+            })
+            .catch(error => console.log(error))
+    }
 
     render() {
         return (
@@ -34,15 +58,26 @@ export class Subcategory extends Component {
             </>
         )
     }
+
+    toastrConfirmOptions = {
+        onOk: () => this.delete(this.props.subcategoryId),
+        onCancel: () => null,
+        okText: CONST.YES,
+        cancelText: CONST.NO,
+    };
 }
 
 const mapStateToProps = (state) => ({
-    subcategories: state.subcategoryReducer.subcategories
+    subcategories: state.subcategoryReducer.subcategories,
+    subcategoryId: state.subcategoryReducer.subcategoryId,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators(
     {
-        getAllSubcategories
+        getAllSubcategories,
+        setSubcategoryForm,
+        setSubcategoryId,
+        deleteSubcategory,
     },
     dispatch
 )

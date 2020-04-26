@@ -18,7 +18,9 @@ export class SubcategoryList extends Component {
                     icon={subcategory.icon}
                     type='small'
                     value={subcategory.name}
-                    showOptions={true}/>
+                    showOptions={true}
+                    edit={this.edit.bind(this, subcategory)}
+                    confirm={this.confirm.bind(this, subcategory.id)}/>
             )
         )
     }
@@ -60,6 +62,4 @@ const mapStateToProps = (state) => ({
     buttonReload: state.categoryReducer.buttonReload,
 })
 
-const mapDispatchToProps = dispatch => null;
-
-export default connect(mapStateToProps, mapDispatchToProps)(SubcategoryList)
+export default connect(mapStateToProps, null)(SubcategoryList);
