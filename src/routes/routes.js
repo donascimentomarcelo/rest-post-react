@@ -7,6 +7,7 @@ import Dashboard from '../components/dashboard/dashboard';
 import Category  from '../components/category/category';
 import CategoryForm from '../components/category/categoryForm/categoryForm';
 import Subcategory from '../components/subcategory/subcategory';
+import SubcategoryForm from '../components/subcategory/subcategoryForm/subcategoryForm';
 
 import PrivateRoute from './privateRoute';
 
@@ -19,6 +20,8 @@ const Routes = props => (
             <PrivateRoute path='/categories/new' component={CategoryForm}/>
             <PrivateRoute path='/categories/:id/edit' component={CategoryForm}/>
             <PrivateRoute path='/subcategories/list' component={Subcategory}/>
+            <PrivateRoute path='/subcategories/new' component={SubcategoryForm}/>
+            <PrivateRoute path='/subcategories/:id/edit' component={SubcategoryForm}/>
             <Redirect from='*' to='/'/>
         </Switch>
     </BrowserRouter>

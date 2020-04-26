@@ -28,7 +28,7 @@ export class Category extends Component {
 
     load = () => this.props.getAllCategories();
 
-    create = () => this.props.history.push('/categories/new');
+    create = () => this.props.history.push(CONST.CATEGORY_NEW);
 
     delete = id => {
         this.props.deleteCategory(id)

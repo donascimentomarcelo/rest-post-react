@@ -23,11 +23,27 @@ export class SubcategoryList extends Component {
         )
     }
 
+    create = () => this.props.create();
+
+    search = () => this.props.search(true);
+
+    load = () => this.props.load();
+
+    edit = category => this.props.edit(category);
+    
+    confirm = id => this.props.confirm(id);
+
     render() {
         return (
             <div className='category-container'>
                 <ContentHeader title='Subcategorias'/>
-
+                <ContentOptions
+                    buttonNew={this.props.buttonNew}
+                    buttonSearch={this.props.buttonSearch}
+                    buttonReload={this.props.buttonReload}
+                    create={this.create}
+                    search={this.search}
+                    load={this.load}/>
                 <Content>
                     <Row>
                         {this.showSubcategoriesCards()}
@@ -39,7 +55,9 @@ export class SubcategoryList extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    
+    buttonNew: state.categoryReducer.buttonNew,
+    buttonSearch: state.categoryReducer.buttonSearch,
+    buttonReload: state.categoryReducer.buttonReload,
 })
 
 const mapDispatchToProps = dispatch => null;

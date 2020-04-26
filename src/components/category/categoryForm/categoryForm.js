@@ -22,7 +22,7 @@ export class CategoryForm extends Component {
 
     componentDidMount = () => console.log('Componente form');
 
-    submit = category => this.props.location.pathname === CONST.CATEGORIES_NEW ? this.newCategory(category) : this.updateCategory(category);
+    submit = category => this.props.location.pathname === CONST.CATEGORY_NEW ? this.newCategory(category) : this.updateCategory(category);
 
     actionBack = () => {
         this.props.initCategoryForm();
@@ -50,8 +50,8 @@ export class CategoryForm extends Component {
     render() {
         const { handleSubmit, pristine, submitting } = this.props;
         return (
-            <div className='category-container'>
-            <ContentHeader title='Formulário de Categoria'/>
+            <>
+            <ContentHeader title={CONST.CATEGORY_CONTENT_HEADER}/>
             <ContentOptions
                 buttonBack={true}
                 actionBack={this.actionBack}/>
@@ -84,7 +84,7 @@ export class CategoryForm extends Component {
                         </button>
                     </ButtonGroup>
                 </form>
-            </div>
+            </>
         )
     }
 }
