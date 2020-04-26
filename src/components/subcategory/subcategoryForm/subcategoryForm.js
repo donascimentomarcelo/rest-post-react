@@ -1,24 +1,39 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { reduxForm, Field } from 'redux-form'
-import { toastr } from 'react-redux-toastr'
-import { getAllCategories } from '../../../actions/categoryAction'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { reduxForm, Field } from 'redux-form';
+import { toastr } from 'react-redux-toastr';
+import { bindActionCreators } from 'redux';
+import { getAllCategories } from '../../../actions/categoryAction';
+import { saveSubcategory } from '../../../actions/subcategoryAction';
 
-import ContentHeader from '../../../layouts/header/contentHeader'
-import ContentOptions from '../../../layouts/body/contentOptions'
-import FormGroupLabel from '../../../layouts/form/formGroupLabel'
-import ButtonGroup from '../../../layouts/buttons/buttonGroup'
-
+import ContentHeader from '../../../layouts/header/contentHeader';
+import ContentOptions from '../../../layouts/body/contentOptions';
+import FormGroupLabel from '../../../layouts/form/formGroupLabel';
+import ButtonGroup from '../../../layouts/buttons/buttonGroup';
 
 import * as CONST from './../../../helpers/constants';
-import { bindActionCreators } from 'redux'
 
 export class SubcategoryForm extends Component {
 
     componentDidMount = () => this.props.getAllCategories();
 
-    submit = value => console.log(value);
+    submit = subcategory => this.props.location.pathname === CONST.SUBCATEGORY_NEW ? this.newSubcategory(subcategory) : this.updateSubategory(subcategory);
+    
+    newSubcategory = subcategory => {
+        this.props.saveSubcategory(subcategory)
+            .then(() => this.actionsAfterSuccess(CONST.SUBCATEGORY_CREATED))
+            .catch(error => console.log(error));
+    }
 
+    actionsAfterSuccess = msg => {
+        this.actionBack();
+        toastr.success(CONST.SUCCESS, msg);
+    }
+    
+    updateSubategory = subcategory => {
+
+    }
+    
     actionBack = () => {
         this.props.history.goBack();
     }
@@ -45,7 +60,7 @@ export class SubcategoryForm extends Component {
                         <Field 
                             component="select" 
                             className="form-control"
-                            name='category' 
+                            name='categoryId' 
                             onChange={this.onChange.bind(this)}>
                                 <option value="">Selecione a categoria</option>
                                 {this.renderOpitions()}
@@ -89,7 +104,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators(
     {
-        getAllCategories
+        getAllCategories,
+        saveSubcategory,
     },
     dispatch
 );

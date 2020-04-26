@@ -9,3 +9,11 @@ export function getAllSubcategories() {
         payload: req
     };
 }
+
+export function saveSubcategory(subcategory) {
+    const req = Axios.post(`${ENV.API_URL}${PATH.SUBCATEGORIES}`, subcategory);
+    return {
+        type: 'CATEGORY_CREATED',
+        payload: req
+    }
+}

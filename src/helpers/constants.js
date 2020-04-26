@@ -10,7 +10,11 @@ export const CATEGORY_CONTENT_HEADER = 'Formulário de Categoria';
 
 export const SUBCATEGORIES = '/subcategories';
 export const SUBCATEGORY_NEW = '/subcategories/new';
-
+export const SUBCATEGORY_ALERT = 'Deseja remover essa Subcategoria?';
+export const SUBCATEGORY_REMOVED = 'Subcategoria removida com sucesso!';
+export const SUBCATEGORY_CREATED = 'Subcategoria criada com sucesso!';
+export const SUBCATEGORY_UPDATED = 'Subcategoria atualizada com sucesso!';
+export const SUBCATEGORY_SEARCH = 'Pesquisar Subcategorias';
 export const SUBCATEGORY_CONTENT_HEADER = 'Formulário de Subcategoria';
 
 export const YES = 'Sim';
