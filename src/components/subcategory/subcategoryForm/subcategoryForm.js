@@ -14,6 +14,7 @@ import ContentHeader from '../../../layouts/header/contentHeader';
 import ContentOptions from '../../../layouts/body/contentOptions';
 import FormGroupLabel from '../../../layouts/form/formGroupLabel';
 import ButtonGroup from '../../../layouts/buttons/buttonGroup';
+import SubcategoryFields from './subcategoryFields';
 
 import * as CONST from './../../../helpers/constants';
 
@@ -64,30 +65,8 @@ export class SubcategoryForm extends Component {
                 actionBack={this.actionBack}/>
 
                 <form onSubmit={handleSubmit(this.submit.bind(this))}>
-                    <FormGroupLabel label='Categoria'>
-                        <Field 
-                            component="select" 
-                            className="form-control"
-                            name='categoryId' 
-                            onChange={this.onChange.bind(this)}>
-                                <option value="">Selecione a categoria</option>
-                                {this.renderOpitions()}
-                        </Field>
-                    </FormGroupLabel>
-                    <FormGroupLabel label='Nome'>
-                        <Field 
-                                component='input' 
-                                name='name' 
-                                className="form-control" 
-                                placeholder='Insira o nome'/>
-                    </FormGroupLabel>
-                    <FormGroupLabel label='Ícone'>
-                        <Field 
-                                component='input' 
-                                name='icon' 
-                                className="form-control" 
-                                placeholder='Insira o ícone'/>
-                    </FormGroupLabel>
+                    <SubcategoryFields
+                        categories={this.props.categories}/>
                     <ButtonGroup>
                         <button type="submit" className="btn btn-outline-secondary" disabled={pristine || submitting}>
                             Salvar
