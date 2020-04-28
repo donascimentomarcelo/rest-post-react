@@ -23,6 +23,23 @@ export default (state = INITIAL_STATE, action) => {
                 subcategoryId: action.payload,
             }
 
+        case 'SET_SUBCATEGORY_MODAL':
+            return {
+                ...state,
+                show: action.payload,
+            }
+
+        case 'SET_SUBCATEGORY_SEARCH_LIST':
+            return {
+                ...state,
+                subcategoriesSearched: action.payload,
+            }
+
+        case 'CATEGORY_DELETED':
+            return {
+                ...state,
+            }
+
         default:
             return state;
     }

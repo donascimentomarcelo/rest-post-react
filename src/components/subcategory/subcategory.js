@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { toastr } from 'react-redux-toastr';
+import { bindActionCreators } from 'redux';
+import { reduxForm, Field } from 'redux-form';
 import { 
     getAllSubcategories,
     setSubcategoryForm,
     setSubcategoryId,
     deleteSubcategory,
+    setSubcategoryModal,
+    resetSubcategorySearchList,
+    resetSubcategorySearchForm,
 } from '../../actions/subcategoryAction';
+import { getAllCategories } from '../../actions/categoryAction';
 import SubcategoryList from './subcategoryList/subcategoryList';
-import { bindActionCreators } from 'redux';
+import SearchModal from '../../layouts/modal/searchModal';
+import FormGroupLabel from '../../layouts/form/formGroupLabel';
+import SubcategoryFields from './subcategoryForm/subcategoryFields';
+
 import * as CONST from './../../helpers/constants';
 
 export class Subcategory extends Component {
@@ -19,7 +28,14 @@ export class Subcategory extends Component {
 
     create = () => this.props.history.push(CONST.SUBCATEGORY_NEW);
     
-    search = value => console.log(value);
+    search = value => {
+        this.props.setSubcategoryModal(value);
+        this.props.resetSubcategorySearchList();
+        this.props.resetSubcategorySearchForm();
+        this.props.getAllCategories();
+    }
+
+    submit = value => console.log(value);
 
     edit = subcategory => {
         const object = {
@@ -46,6 +62,7 @@ export class Subcategory extends Component {
     }
 
     render() {
+        const { handleSubmit } = this.props;
         return (
             <>
                 <SubcategoryList
@@ -55,6 +72,16 @@ export class Subcategory extends Component {
                     search={this.search}
                     edit={this.edit}
                     confirm={this.confirm}/>
+
+                <SearchModal
+                    show={this.props.show}                   
+                    title={CONST.SUBCATEGORY_SEARCH}
+                    onHide={this.search.bind(this, false)}
+                    handleSubmit={handleSubmit(this.submit.bind(this))}
+                    data={[]}>
+                        <SubcategoryFields
+                            categories={this.props.categories}/>
+                </SearchModal>
             </>
         )
     }
@@ -67,9 +94,19 @@ export class Subcategory extends Component {
     };
 }
 
+Subcategory = reduxForm(
+    {
+        form: 'subcategorySearchForm',
+        destroyOnUnmount: false
+    }
+)(Subcategory);
+
 const mapStateToProps = (state) => ({
     subcategories: state.subcategoryReducer.subcategories,
     subcategoryId: state.subcategoryReducer.subcategoryId,
+    show: state.subcategoryReducer.show,
+    categories: state.categoryReducer.categories,
+    enableReinitialize: true,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators(
@@ -78,6 +115,10 @@ const mapDispatchToProps = dispatch => bindActionCreators(
         setSubcategoryForm,
         setSubcategoryId,
         deleteSubcategory,
+        setSubcategoryModal,
+        resetSubcategorySearchList,
+        resetSubcategorySearchForm,
+        getAllCategories,
     },
     dispatch
 )

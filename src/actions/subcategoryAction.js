@@ -42,6 +42,26 @@ export function setSubcategoryId(id) {
     };
 }
 
+export function setSubcategoryModal(show) {
+    return {
+        type: 'SET_SUBCATEGORY_MODAL',
+        payload: show
+    }
+}
+
+export function resetSubcategorySearchList() {
+    return {
+        type: 'SET_SUBCATEGORY_SEARCH_LIST',
+        payload: []
+    }
+}
+
+export function resetSubcategorySearchForm() {
+    return [
+        initialize('subcategorySearchForm')
+    ];
+}
+
 export function setSubcategoryForm(subcategory) {
     return [
         initialize('subcategoryForm', subcategory)
