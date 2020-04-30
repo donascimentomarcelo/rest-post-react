@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { toastr } from 'react-redux-toastr';
 import { bindActionCreators } from 'redux';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import { 
     getAllSubcategories,
     setSubcategoryForm,
@@ -11,12 +11,13 @@ import {
     setSubcategoryModal,
     resetSubcategorySearchList,
     resetSubcategorySearchForm,
+    findSubcategoryByParams
 } from '../../actions/subcategoryAction';
 import { getAllCategories } from '../../actions/categoryAction';
 import SubcategoryList from './subcategoryList/subcategoryList';
 import SearchModal from '../../layouts/modal/searchModal';
-import FormGroupLabel from '../../layouts/form/formGroupLabel';
 import SubcategoryFields from './subcategoryForm/subcategoryFields';
+import ValueBox from '../../layouts/box/valueBox';
 
 import * as CONST from './../../helpers/constants';
 
@@ -35,7 +36,7 @@ export class Subcategory extends Component {
         this.props.getAllCategories();
     }
 
-    submit = value => console.log(value);
+    submit = params => this.props.findSubcategoryByParams(params);
 
     edit = subcategory => {
         const object = {
@@ -61,6 +62,32 @@ export class Subcategory extends Component {
             .catch(error => console.log(error))
     }
 
+    showSubcategoriesCards = () => {
+        const subcategories = this.props.subcategoriesSearched || [];
+
+        if (subcategories.length) {
+            return (
+                <div className="row modal-table-size">
+                {
+                    subcategories.map(subcategory => (
+                        <ValueBox
+                            key={subcategory.id}
+                            cols='6 6' 
+                            color='gray' 
+                            icon={subcategory.icon}
+                            type='small'
+                            value={subcategory.name}
+                            showOptions={true}
+                            edit={this.edit.bind(this, subcategory)}
+                            confirm={this.confirm.bind(this, subcategory.id)}/>
+                        )
+                    )
+                }
+            </div>
+            )
+        }
+    }
+
     render() {
         const { handleSubmit } = this.props;
         return (
@@ -78,7 +105,7 @@ export class Subcategory extends Component {
                     title={CONST.SUBCATEGORY_SEARCH}
                     onHide={this.search.bind(this, false)}
                     handleSubmit={handleSubmit(this.submit.bind(this))}
-                    data={[]}>
+                    data={this.showSubcategoriesCards()}>
                         <SubcategoryFields
                             categories={this.props.categories}/>
                 </SearchModal>
@@ -105,6 +132,7 @@ const mapStateToProps = (state) => ({
     subcategories: state.subcategoryReducer.subcategories,
     subcategoryId: state.subcategoryReducer.subcategoryId,
     show: state.subcategoryReducer.show,
+    subcategoriesSearched: state.subcategoryReducer.subcategoriesSearched,
     categories: state.categoryReducer.categories,
     enableReinitialize: true,
 })
@@ -119,6 +147,7 @@ const mapDispatchToProps = dispatch => bindActionCreators(
         resetSubcategorySearchList,
         resetSubcategorySearchForm,
         getAllCategories,
+        findSubcategoryByParams
     },
     dispatch
 )

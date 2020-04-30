@@ -35,6 +35,12 @@ export default (state = INITIAL_STATE, action) => {
                 subcategoriesSearched: action.payload,
             }
 
+        case 'SUBCATEGORIES_FETCHED_BY_PARAMS':
+            return {
+                ...state,
+                subcategoriesSearched: action.payload.data,
+            }
+
         case 'CATEGORY_DELETED':
             return {
                 ...state,

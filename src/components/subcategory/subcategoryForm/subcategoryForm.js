@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import { toastr } from 'react-redux-toastr';
 import { bindActionCreators } from 'redux';
 import { getAllCategories } from '../../../actions/categoryAction';
@@ -12,7 +12,6 @@ import {
 
 import ContentHeader from '../../../layouts/header/contentHeader';
 import ContentOptions from '../../../layouts/body/contentOptions';
-import FormGroupLabel from '../../../layouts/form/formGroupLabel';
 import ButtonGroup from '../../../layouts/buttons/buttonGroup';
 import SubcategoryFields from './subcategoryFields';
 

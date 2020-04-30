@@ -35,6 +35,15 @@ export function deleteSubcategory(id) {
     };
 }
 
+export function findSubcategoryByParams(params) {
+    const req = Axios.post(
+        `${ENV.API_URL}${PATH.SUBCATEGORIES}/findByNameAndCategory`, params);
+    return {
+        type: 'SUBCATEGORIES_FETCHED_BY_PARAMS',
+        payload: req
+    }
+}
+
 export function setSubcategoryId(id) {
     return {
         type: 'SET_SUBCATEGORYID',
