@@ -127,7 +127,7 @@ export class Category extends Component {
 
 Category = reduxForm(
     {
-        form: 'categorySearchForm',
+        form: CONST.CATEGORY_SEARCH_FORM,
         destroyOnUnmount: false
     }
 )(Category);

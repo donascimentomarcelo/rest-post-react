@@ -17,6 +17,11 @@ export const SUBCATEGORY_UPDATED = 'Subcategoria atualizada com sucesso!';
 export const SUBCATEGORY_SEARCH = 'Pesquisar Subcategorias';
 export const SUBCATEGORY_CONTENT_HEADER = 'Formulário de Subcategoria';
 
+export const CATEGORY_FORM = 'categoryForm';
+export const CATEGORY_SEARCH_FORM = 'categorySearchForm';
+export const SUBCATEGORY_FORM = 'subcategoryForm';
+export const SUBCATEGORY_SEARCH_FORM = 'subcategorySearchForm';
+
 export const YES = 'Sim';
 export const NO = 'Não';
 

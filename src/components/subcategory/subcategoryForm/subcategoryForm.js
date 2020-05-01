@@ -79,7 +79,7 @@ export class SubcategoryForm extends Component {
 
 SubcategoryForm = reduxForm(
     {
-        form: 'subcategoryForm',
+        form: CONST.SUBCATEGORY_FORM,
         destroyOnUnmount: false
     }
 )(SubcategoryForm);
