@@ -1,12 +1,13 @@
 import Axios from "axios";
 import * as ENV from './../environment/environment';
 import * as PATH from './../helpers/constants';
+import * as REDUCERS from './../helpers/reducers';
 import { initialize } from "redux-form";
 
 export function getAllSubcategories() {
     const req = Axios.get(`${ENV.API_URL}${PATH.SUBCATEGORIES}`);
     return {
-        type: 'SUBCATEGORIES_FETCHED',
+        type: REDUCERS.SUBCATEGORIES_FETCHED,
         payload: req
     };
 }
@@ -14,7 +15,7 @@ export function getAllSubcategories() {
 export function saveSubcategory(subcategory) {
     const req = Axios.post(`${ENV.API_URL}${PATH.SUBCATEGORIES}`, subcategory);
     return {
-        type: 'SUBCATEGORY_CREATED',
+        type: REDUCERS.SUBCATEGORY_CREATED,
         payload: req
     };
 }
@@ -22,7 +23,7 @@ export function saveSubcategory(subcategory) {
 export function updateSubategory(subcategory, id) {
     const req = Axios.put(`${ENV.API_URL}${PATH.SUBCATEGORIES}/${id}`, subcategory);
     return {
-        type: 'SUBCATEGORY_UPDATED',
+        type: REDUCERS.SUBCATEGORY_UPDATED,
         payload: req
     };
 }
@@ -30,7 +31,7 @@ export function updateSubategory(subcategory, id) {
 export function deleteSubcategory(id) {
     const req = Axios.delete(`${ENV.API_URL}${PATH.SUBCATEGORIES}/${id}`);
     return {
-        type: 'CATEGORY_DELETED',
+        type: REDUCERS.SUBCATEGORY_DELETED,
         payload: req
     };
 }
@@ -39,28 +40,28 @@ export function findSubcategoryByParams(params) {
     const req = Axios.post(
         `${ENV.API_URL}${PATH.SUBCATEGORIES}/findByNameAndCategory`, params);
     return {
-        type: 'SUBCATEGORIES_FETCHED_BY_PARAMS',
+        type: REDUCERS.SUBCATEGORIES_FETCHED_BY_PARAMS,
         payload: req
     }
 }
 
 export function setSubcategoryId(id) {
     return {
-        type: 'SET_SUBCATEGORYID',
+        type: REDUCERS.SET_SUBCATEGORYID,
         payload: id
     };
 }
 
 export function setSubcategoryModal(show) {
     return {
-        type: 'SET_SUBCATEGORY_MODAL',
+        type: REDUCERS.SET_SUBCATEGORY_MODAL,
         payload: show
     }
 }
 
 export function resetSubcategorySearchList() {
     return {
-        type: 'SET_SUBCATEGORY_SEARCH_LIST',
+        type: REDUCERS.SET_SUBCATEGORY_SEARCH_LIST,
         payload: []
     }
 }

@@ -1,3 +1,5 @@
+import * as REDUCERS from './../helpers/reducers';
+
 const INITIAL_STATE = {
     subcategories: [],
     subcategoriesSearched: [],
@@ -11,37 +13,37 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case 'SUBCATEGORIES_FETCHED':
+        case REDUCERS.SUBCATEGORIES_FETCHED :
             return {
                 ...state,
                 subcategories: action.payload.data,
             }
 
-        case 'SET_SUBCATEGORYID':
+        case REDUCERS.SET_SUBCATEGORYID :
             return {
                 ...state,
                 subcategoryId: action.payload,
             }
 
-        case 'SET_SUBCATEGORY_MODAL':
+        case REDUCERS.SET_SUBCATEGORY_MODAL :
             return {
                 ...state,
                 show: action.payload,
             }
 
-        case 'SET_SUBCATEGORY_SEARCH_LIST':
+        case REDUCERS.SET_SUBCATEGORY_SEARCH_LIST :
             return {
                 ...state,
                 subcategoriesSearched: action.payload,
             }
 
-        case 'SUBCATEGORIES_FETCHED_BY_PARAMS':
+        case REDUCERS.SUBCATEGORIES_FETCHED_BY_PARAMS :
             return {
                 ...state,
                 subcategoriesSearched: action.payload.data,
             }
 
-        case 'CATEGORY_DELETED':
+        case REDUCERS.SUBCATEGORY_DELETED :
             return {
                 ...state,
             }
