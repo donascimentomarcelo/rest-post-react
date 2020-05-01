@@ -1,11 +1,11 @@
 import Axios from "axios";
 import * as ENV from './../environment/environment';
-import * as PATH from './../helpers/constants';
+import * as CONST from './../helpers/constants';
 import * as REDUCERS from './../helpers/reducers';
 import { initialize } from "redux-form";
 
 export function getAllCategories() {
-    const req = Axios.get(`${ENV.API_URL}${PATH.CATEGORIES}`);
+    const req = Axios.get(`${ENV.API_URL}${CONST.CATEGORIES}`);
     return {
         type: REDUCERS.CATEGORIES_FETCHED,
         payload: req
@@ -13,7 +13,7 @@ export function getAllCategories() {
 }
 
 export function saveCategory(category) {
-    const req = Axios.post(`${ENV.API_URL}${PATH.CATEGORIES}`, category);
+    const req = Axios.post(`${ENV.API_URL}${CONST.CATEGORIES}`, category);
     return {
         type: REDUCERS.CATEGORY_CREATED,
         payload: req
@@ -21,7 +21,7 @@ export function saveCategory(category) {
 }
 
 export function updateCategory(category, id) {
-    const req = Axios.put(`${ENV.API_URL}${PATH.CATEGORIES}/${id}`, category);
+    const req = Axios.put(`${ENV.API_URL}${CONST.CATEGORIES}/${id}`, category);
     return {
         type: REDUCERS.CATEGORY_UPDATED,
         payload: req
@@ -29,7 +29,7 @@ export function updateCategory(category, id) {
 }
 
 export function deleteCategory(id) {
-    const req = Axios.delete(`${ENV.API_URL}${PATH.CATEGORIES}/${id}`);
+    const req = Axios.delete(`${ENV.API_URL}${CONST.CATEGORIES}/${id}`);
     return {
         type: REDUCERS.CATEGORY_DELETED,
         payload: req
@@ -37,7 +37,7 @@ export function deleteCategory(id) {
 }
 
 export function findByCategoryName(name) {
-    const req = Axios.get(`${ENV.API_URL}${PATH.CATEGORIES}/findByName?name=${name}`);
+    const req = Axios.get(`${ENV.API_URL}${CONST.CATEGORIES}/findByName?name=${name}`);
     return {
         type: REDUCERS.CATEGORY_SEARCHED,
         payload: req
@@ -58,6 +58,21 @@ export function openModal(show) {
     }
 }
 
+export function findCategoryById(id) {
+    const req = Axios.get(`${ENV.API_URL}${CONST.CATEGORIES}/${id}`);
+    return {
+        type: REDUCERS.CATEGORY_FETCHED,
+        payload: req
+    }
+}
+
+export function resetCategory() {
+    return {
+        type: REDUCERS.CATEGORY_FETCHED,
+        payload: {data:null}
+    }
+}
+
 export function resetCategoriesSearched() { 
     return {
         type: REDUCERS.CATEGORY_SEARCHED,
@@ -74,18 +89,18 @@ export function removeCategoryFromSearch(id) {
 
 export function resetCategoryFieldSearch() {
     return [
-        initialize('categorySearchForm')
+        initialize(CONST.CATEGORY_SEARCH_FORM)
     ];
 }
 
 export function initCategoryForm() {
     return [
-        initialize('categoryForm')
+        initialize(CONST.CATEGORY_FORM)
     ];
 }
 
 export function setCategoryForm(category) {
     return [
-        initialize('categoryForm', category)
+        initialize(CONST.CATEGORY_FORM, category)
     ];
 }

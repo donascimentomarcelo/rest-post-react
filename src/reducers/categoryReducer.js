@@ -7,6 +7,7 @@ const INITIAL_STATE = {
     buttonSearch: true,
     buttonReload: true,
     show: false,
+    category: null,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -38,6 +39,12 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 categoriesSearched: action.payload.data,
+            }
+
+        case REDUCERS.CATEGORY_FETCHED :
+            return {
+                ...state,
+                category: action.payload.data,
             }
         
         case REDUCERS.REMOVE_CATEGORY_FROM_SEARCH :

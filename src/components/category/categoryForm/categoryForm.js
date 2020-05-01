@@ -8,7 +8,14 @@ import ContentOptions from '../../../layouts/body/contentOptions';
 import FormGroupLabel from '../../../layouts/form/formGroupLabel';
 import ButtonGroup from '../../../layouts/buttons/buttonGroup';
 
-import { saveCategory, updateCategory, initCategoryForm } from './../../../actions/categoryAction';
+import { 
+    saveCategory, 
+    updateCategory, 
+    initCategoryForm, 
+    findCategoryById,
+    setCategoryForm,
+    resetCategory
+} from './../../../actions/categoryAction';
 
 import * as CONST from './../../../helpers/constants';
 
@@ -20,12 +27,13 @@ export class CategoryForm extends Component {
     
     history = this.props.history;
 
-    componentDidMount = () => console.log('Componente form');
+    componentDidMount = () => this.findCategoryById();
 
     submit = category => this.props.location.pathname === CONST.CATEGORY_NEW ? this.newCategory(category) : this.updateCategory(category);
 
     actionBack = () => {
         this.props.initCategoryForm();
+        this.props.resetCategory();
         this.history.goBack();
     };
 
@@ -45,7 +53,15 @@ export class CategoryForm extends Component {
         this.props.updateCategory(category, id)
             .then(() => this.actionsAfterSuccess(CONST.CATEGORY_UPDATED))
             .catch(error => console.log(error));
-    };
+    }
+
+    findCategoryById() {
+        if (this.props.location.pathname !== CONST.CATEGORY_NEW) {
+            this.props.findCategoryById(this.props.match.params.id)
+                .then(() => this.props.setCategoryForm(this.props.category))
+                .catch(error => console.log(error));
+        }
+    }
 
     render() {
         const { handleSubmit, pristine, submitting } = this.props;
@@ -98,7 +114,7 @@ CategoryForm = reduxForm(
 
 const mapStateToProps = (state) => (
     {
-
+        category: state.categoryReducer.category
     }
 )
 
@@ -107,6 +123,9 @@ const mapDispatchToProps = dispatch => bindActionCreators (
         saveCategory,
         updateCategory,
         initCategoryForm,
+        findCategoryById,
+        setCategoryForm,
+        resetCategory,
     },
     dispatch
 );
