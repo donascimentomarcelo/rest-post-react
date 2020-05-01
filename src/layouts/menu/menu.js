@@ -8,6 +8,7 @@ const Menu = () => {
             <MenuItem path='#' label='Início' icon='home'/>
             <MenuItem path='/categories/list' label='Categorias' icon='list-ol'/>
             <MenuItem path='/subcategories/list' label='Subcategorias' icon='list-ul'/>
+            <MenuItem path='/posts/list' label='Post' icon='align-left'/>
         </ul>
     )
 }

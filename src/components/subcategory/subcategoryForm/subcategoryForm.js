@@ -7,7 +7,9 @@ import { getAllCategories } from '../../../actions/categoryAction';
 import { 
     saveSubcategory,
     updateSubategory,
-    setSubcategoryForm, 
+    setSubcategoryForm,
+    findSubcategoryById,
+    resetSubcategory,
 } from '../../../actions/subcategoryAction';
 
 import ContentHeader from '../../../layouts/header/contentHeader';
@@ -19,7 +21,10 @@ import * as CONST from './../../../helpers/constants';
 
 export class SubcategoryForm extends Component {
 
-    componentDidMount = () => this.props.getAllCategories();
+    componentDidMount = () => {
+        this.props.getAllCategories();
+        this.findSubcategoryById();
+    };
 
     submit = subcategory => this.props.location.pathname === CONST.SUBCATEGORY_NEW ? this.newSubcategory(subcategory) : this.updateSubategory(subcategory);
     
@@ -43,6 +48,7 @@ export class SubcategoryForm extends Component {
     
     actionBack = () => {
         this.props.history.goBack();
+        this.props.resetSubcategory();
         this.props.setSubcategoryForm(null);
     }
 
@@ -52,6 +58,14 @@ export class SubcategoryForm extends Component {
         return this.props.categories.map(category => {
             return <option value={category.id} key={category.id} >{category.name}</option>
         });
+    }
+
+    findSubcategoryById() {
+        if (this.props.location.pathname !== CONST.SUBCATEGORY_NEW) {
+            this.props.findSubcategoryById(this.props.match.params.id)
+                .then(() => this.props.setSubcategoryForm(this.props.subcategory))
+                .catch(error => console.log(error));
+        }
     }
 
     render() {
@@ -86,6 +100,7 @@ SubcategoryForm = reduxForm(
 
 const mapStateToProps = (state) => ({
     categories: state.categoryReducer.categories,
+    subcategory: state.subcategoryReducer.subcategory,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators(
@@ -94,6 +109,8 @@ const mapDispatchToProps = dispatch => bindActionCreators(
         saveSubcategory,
         updateSubategory,
         setSubcategoryForm,
+        findSubcategoryById,
+        resetSubcategory,
     },
     dispatch
 );

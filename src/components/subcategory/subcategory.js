@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import { reduxForm } from 'redux-form';
 import { 
     getAllSubcategories,
-    setSubcategoryForm,
     setSubcategoryId,
     deleteSubcategory,
     setSubcategoryModal,
@@ -38,15 +37,7 @@ export class Subcategory extends Component {
 
     submit = params => this.props.findSubcategoryByParams(params);
 
-    edit = subcategory => {
-        const object = {
-            categoryId: subcategory.category.id,
-            name: subcategory.name,
-            icon: subcategory.icon,
-        };
-        this.props.setSubcategoryForm(object);
-        this.props.history.push(`/subcategories/${subcategory.id}/edit`);
-    }
+    edit = id => this.props.history.push(`/subcategories/${id}/edit`);
 
     confirm = id => {
         this.props.setSubcategoryId(id);
@@ -140,7 +131,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => bindActionCreators(
     {
         getAllSubcategories,
-        setSubcategoryForm,
         setSubcategoryId,
         deleteSubcategory,
         setSubcategoryModal,

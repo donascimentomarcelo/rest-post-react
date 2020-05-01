@@ -19,7 +19,7 @@ export class SubcategoryList extends Component {
                     type='small'
                     value={subcategory.name}
                     showOptions={true}
-                    edit={this.edit.bind(this, subcategory)}
+                    edit={this.edit.bind(this, subcategory.id)}
                     confirm={this.confirm.bind(this, subcategory.id)}/>
             )
         )
@@ -31,7 +31,7 @@ export class SubcategoryList extends Component {
 
     load = () => this.props.load();
 
-    edit = category => this.props.edit(category);
+    edit = id => this.props.edit(id);
     
     confirm = id => this.props.confirm(id);
 

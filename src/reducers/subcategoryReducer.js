@@ -9,6 +9,7 @@ const INITIAL_STATE = {
     buttonReload: true,
     show: false,
     subcategoryId: null,
+    subcategory: null,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -41,6 +42,12 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 subcategoriesSearched: action.payload.data,
+            }
+
+        case REDUCERS.SUBCATEGORY_FETCHED :
+            return {
+                ...state,
+                subcategory: action.payload.data,
             }
 
         case REDUCERS.SUBCATEGORY_DELETED :
