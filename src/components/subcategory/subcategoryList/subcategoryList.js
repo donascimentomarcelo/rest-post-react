@@ -37,7 +37,7 @@ export class SubcategoryList extends Component {
 
     render() {
         return (
-            <div className='category-container'>
+            <>
                 <ContentHeader title='Subcategorias'/>
                 <ContentOptions
                     buttonNew={this.props.buttonNew}
@@ -51,7 +51,7 @@ export class SubcategoryList extends Component {
                         {this.showSubcategoriesCards()}
                     </Row>
                 </Content>
-            </div>
+            </>
         )
     }
 }

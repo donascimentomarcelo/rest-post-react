@@ -104,3 +104,14 @@
     float: right;
     margin-right: 2%;
 }
+
+.left {
+    float: left;
+    position: absolute;
+    width: 200px;
+    text-align: center;
+}
+
+.inner-align {
+    padding-left: 200px !important;
+}

@@ -17,10 +17,21 @@ export const SUBCATEGORY_UPDATED = 'Subcategoria atualizada com sucesso!';
 export const SUBCATEGORY_SEARCH = 'Pesquisar Subcategorias';
 export const SUBCATEGORY_CONTENT_HEADER = 'Formulário de Subcategoria';
 
+export const POSTS = '/posts';
+export const POST_NEW = '/posts/new';
+export const POST_ALERT = 'Deseja remover essa Post?';
+export const POST_REMOVED = 'Post removida com sucesso!';
+export const POST_CREATED = 'Post criada com sucesso!';
+export const POST_UPDATED = 'Post atualizada com sucesso!';
+export const POST_SEARCH = 'Pesquisar Posts';
+export const POST_CONTENT_HEADER = 'Formulário de Post';
+
 export const CATEGORY_FORM = 'categoryForm';
 export const CATEGORY_SEARCH_FORM = 'categorySearchForm';
 export const SUBCATEGORY_FORM = 'subcategoryForm';
 export const SUBCATEGORY_SEARCH_FORM = 'subcategorySearchForm';
+export const POST_FORM = 'postForm';
+export const POST_SEARCH_FORM = 'postSearchForm';
 
 export const YES = 'Sim';
 export const NO = 'Não';

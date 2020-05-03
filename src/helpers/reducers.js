@@ -18,6 +18,16 @@ export const SET_SUBCATEGORY_MODAL           = 'SET_SUBCATEGORY_MODAL';
 export const SET_SUBCATEGORY_SEARCH_LIST     = 'SET_SUBCATEGORY_SEARCH_LIST';
 export const SUBCATEGORY_FETCHED             = 'SUBCATEGORY_FETCHED';
 
+export const POSTS_FETCHED                   = 'POSTS_FETCHED';
+export const POST_CREATED                    = 'POST_CREATED';
+export const POST_UPDATED                    = 'POST_UPDATED';
+export const POST_DELETED                    = 'POST_DELETED';
+export const POSTS_FETCHED_BY_PARAMS         = 'POSTS_FETCHED_BY_PARAMS';
+export const SET_POST_ID                     = 'SET_POST_ID';
+export const SET_POST_MODAL                  = 'SET_POST_MODAL';
+export const SET_POST_SEARCH_LIST            = 'SET_POST_SEARCH_LIST';
+export const POST_FETCHED                    = 'POST_FETCHED';
+
 
 
 

@@ -6,6 +6,7 @@ import loginReducer from "./loginReducer";
 import appReducer from "./appReducer";
 import categoryReducer from "./categoryReducer";
 import subcategoryReducer from "./subcategoryReducer";
+import postReducer from "./postReducer";
 
 const RootReducer = combineReducers({
     toastr: toastrReducer,
@@ -14,6 +15,7 @@ const RootReducer = combineReducers({
     appReducer,
     categoryReducer,
     subcategoryReducer,
+    postReducer,
 });
 
 export default RootReducer;
