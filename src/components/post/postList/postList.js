@@ -17,7 +17,10 @@ export class PostList extends Component {
                     icon={post.subcategory.icon}
                     value={post.title}
                     id={post.id}
-                    text={post.description}/>
+                    text={post.description}
+                    comments={post.comments}
+                    view={post.view}
+                    vote={post.vote}/>
             )
         )
     }

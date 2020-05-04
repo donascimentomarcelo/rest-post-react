@@ -13,6 +13,9 @@ const PostBox = (props) => {
         value,
         text,
         icon,
+        comments,
+        view,
+        vote,
     } = props;
 
     const delimiter = () => {
@@ -26,9 +29,9 @@ const PostBox = (props) => {
             <div className='small-box bg-gray'>
                 <div className="left">
                     <PostOptionsBox
-                        views={54}
-                        comments={12}
-                        votes={3}/>
+                        views={view}
+                        comments={comments.length}
+                        votes={vote}/>
                 </div>
                 <div className="inner inner-align">
                     <a href={`/${id}/view`} className={value}>
