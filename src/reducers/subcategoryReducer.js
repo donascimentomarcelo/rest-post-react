@@ -44,6 +44,12 @@ export default (state = INITIAL_STATE, action) => {
                 subcategoriesSearched: action.payload.data,
             }
 
+        case REDUCERS.FIND_BY_CAREGORY :
+            return {
+                ...state,
+                subcategories: action.payload.data,
+            }
+
         case REDUCERS.SUBCATEGORY_FETCHED :
             return {
                 ...state,

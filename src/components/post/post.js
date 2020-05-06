@@ -16,10 +16,13 @@ export class Post extends Component {
 
     componentWillMount = () => this.props.getAllPosts();
 
+    create = () => this.props.history.push(CONST.POST_NEW);
+
     render() {
         return (
             <>
                 <PostList
+                    create={this.create}
                     posts={this.props.posts}/>
             </>
         )

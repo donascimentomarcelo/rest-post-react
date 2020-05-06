@@ -9,6 +9,7 @@ import CategoryForm from '../components/category/categoryForm/categoryForm';
 import Subcategory from '../components/subcategory/subcategory';
 import SubcategoryForm from '../components/subcategory/subcategoryForm/subcategoryForm';
 import Post from '../components/post/post';
+import PostForm from '../components/post/postForm/postForm';
 
 import PrivateRoute from './privateRoute';
 
@@ -24,6 +25,8 @@ const Routes = props => (
             <PrivateRoute path='/subcategories/new' component={SubcategoryForm}/>
             <PrivateRoute path='/subcategories/:id/edit' component={SubcategoryForm}/>
             <PrivateRoute path='/posts/list' component={Post}/>
+            <PrivateRoute path='/posts/new' component={PostForm}/>
+            <PrivateRoute path='/posts/:id/app-route/:route' component={PostForm}/>
             <Redirect from='*' to='/'/>
         </Switch>
     </BrowserRouter>

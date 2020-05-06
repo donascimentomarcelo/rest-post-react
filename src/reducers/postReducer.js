@@ -1,6 +1,7 @@
 import * as REDUCERS from './../helpers/reducers';
 
 const INITIAL_STATE = {
+    buttonNew: true,
     posts: [],
 }
 
@@ -11,7 +12,7 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 posts: action.payload.data
             }
-            
+
         default:
             return state;
     }

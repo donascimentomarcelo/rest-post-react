@@ -45,6 +45,15 @@ export function findSubcategoryByParams(params) {
     }
 }
 
+export function findByCategory(id) {
+    const req = Axios.get(
+        `${ENV.API_URL}${CONST.SUBCATEGORIES}/findByCategory/${id}`);
+    return {
+        type: REDUCERS.FIND_BY_CAREGORY,
+        payload: req
+    }
+}
+
 export function findSubcategoryById(id) {
     const req = Axios.get(`${ENV.API_URL}${CONST.SUBCATEGORIES}/${id}`);
     return {

@@ -17,6 +17,7 @@ export const SET_SUBCATEGORYID               = 'SET_SUBCATEGORYID';
 export const SET_SUBCATEGORY_MODAL           = 'SET_SUBCATEGORY_MODAL';
 export const SET_SUBCATEGORY_SEARCH_LIST     = 'SET_SUBCATEGORY_SEARCH_LIST';
 export const SUBCATEGORY_FETCHED             = 'SUBCATEGORY_FETCHED';
+export const FIND_BY_CAREGORY                = 'FIND_BY_CAREGORY';
 
 export const POSTS_FETCHED                   = 'POSTS_FETCHED';
 export const POST_CREATED                    = 'POST_CREATED';

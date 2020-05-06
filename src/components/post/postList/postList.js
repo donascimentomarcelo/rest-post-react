@@ -25,11 +25,15 @@ export class PostList extends Component {
         )
     }
 
+    create = () => this.props.create();
+
     render() {
         return (
             <>
                 <ContentHeader title='Posts'/>
-                <ContentOptions/>
+                <ContentOptions
+                    buttonNew={this.props.buttonNew}
+                    create={this.create}/>
                 <Content>
                     <Row>
                         {this.showPostsCards()}
@@ -40,9 +44,11 @@ export class PostList extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    
-})
+const mapStateToProps = (state) => (
+    {
+        buttonNew: state.postReducer.buttonNew,
+    }
+)
 
 const mapDispatchToProps = {
     
