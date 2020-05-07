@@ -18,12 +18,8 @@ const PostBox = (props) => {
         vote,
     } = props;
 
-    const delimiter = () => {
-        if (text.length > 200) {
-            return text.substring(0, 200) + "...";
-        }
-    }
-
+    const delimiter = () => text.length > 200 ? `${text.substring(0, 200)} ...` : text;
+    
     const replaceUrl = value => value.replace(' ', '-').toLowerCase();
 
     return (
