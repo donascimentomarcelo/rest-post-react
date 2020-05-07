@@ -10,3 +10,11 @@ export function getAllPosts() {
         payload: req
     }
 }
+
+export function createPost(post) {
+    const req = Axios.post(`${ENV.API_URL}${CONST.POSTS}`, post);
+    return {
+        type: REDUCERS.POST_CREATED,
+        payload: req
+    }
+}

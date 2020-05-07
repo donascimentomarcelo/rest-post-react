@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+import { reduxForm, Field } from 'redux-form';
+import { toastr } from 'react-redux-toastr';
 
 import ContentHeader from '../../../layouts/header/contentHeader';
 import ContentOptions from '../../../layouts/body/contentOptions';
@@ -10,8 +13,7 @@ import * as CONST from './../../../helpers/constants';
 
 import { getAllCategories } from './../../../actions/categoryAction'
 import { findByCategory } from '../../../actions/subcategoryAction';
-import { bindActionCreators } from 'redux';
-import { reduxForm, Field } from 'redux-form';
+import { createPost } from '../../../actions/postAction';
 
 export class PostForm extends Component {
 
@@ -21,7 +23,15 @@ export class PostForm extends Component {
         this.props.history.goBack();
     };
 
-    submit = values => console.log(values);
+    submit = post => {
+        this.props.createPost(post)
+            .then(() => this.actionsAfterSuccess(CONST.POST_CREATED));
+    };
+
+    actionsAfterSuccess = msg => {
+        this.actionBack();
+        toastr.success(CONST.SUCCESS, msg);
+    } 
 
     findByCategory = event => {
         this.props.findByCategory(event.target.value)
@@ -109,6 +119,7 @@ const mapDispatchToProps = dispatch => bindActionCreators(
     {
         getAllCategories,
         findByCategory,
+        createPost,
     }, 
 dispatch);
 
