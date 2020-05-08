@@ -57,15 +57,17 @@ export class PostForm extends Component {
     }
 
     findPostById = () => {
-        if (this.props.location.pathname !== CONST.POST_NEW) {
+        if (this.readOnly()) {
             this.props.findPostById(this.props.match.params.id)
                 .then(() => this.props.setPostForm(this.props.post))
                 .catch(error => console.log(error));
         }
     }
 
+    readOnly = () => !this.props.location.pathname === CONST.POST_NEW;
+
     showButtonSubmit = (pristine, submitting) => {
-        if (this.props.location.pathname === CONST.POST_NEW) {
+        if (!this.readOnly()) {
             return (
                 <ButtonGroup>
                     <button type="submit" className="btn btn-outline-secondary" disabled={pristine || submitting}>
