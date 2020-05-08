@@ -13,11 +13,18 @@ import * as CONST from './../../../helpers/constants';
 
 import { getAllCategories } from './../../../actions/categoryAction'
 import { findByCategory } from '../../../actions/subcategoryAction';
-import { createPost } from '../../../actions/postAction';
+import { 
+    createPost, 
+    findPostById,
+    setPostForm
+} from '../../../actions/postAction';
 
 export class PostForm extends Component {
 
-    componentWillMount = () => this.props.getAllCategories();
+    componentWillMount = () => {
+        this.props.getAllCategories();
+        this.findPostById();
+    }
 
     actionBack = () => {
         this.props.history.goBack();
@@ -47,6 +54,26 @@ export class PostForm extends Component {
         return this.props.subcategories.map(subcategory => {
             return <option value={subcategory.id} key={subcategory.id} >{subcategory.name}</option>
         });
+    }
+
+    findPostById = () => {
+        if (this.props.location.pathname !== CONST.POST_NEW) {
+            this.props.findPostById(this.props.match.params.id)
+                .then(() => this.props.setPostForm(this.props.post))
+                .catch(error => console.log(error));
+        }
+    }
+
+    showButtonSubmit = (pristine, submitting) => {
+        if (this.props.location.pathname === CONST.POST_NEW) {
+            return (
+                <ButtonGroup>
+                    <button type="submit" className="btn btn-outline-secondary" disabled={pristine || submitting}>
+                        Salvar
+                    </button>
+                </ButtonGroup>
+            )
+        }
     }
 
     render() {
@@ -90,11 +117,7 @@ export class PostForm extends Component {
                                 className="form-control"
                                 name='description'/>
                     </FormGroupLabel>
-                    <ButtonGroup>
-                        <button type="submit" className="btn btn-outline-secondary" disabled={pristine || submitting}>
-                            Salvar
-                        </button>
-                    </ButtonGroup>
+                    {this.showButtonSubmit(pristine, submitting)}
                 </form>
             </>
         )
@@ -112,6 +135,7 @@ const mapStateToProps = (state) => (
     {
         categories: state.categoryReducer.categories,
         subcategories: state.subcategoryReducer.subcategories,
+        post: state.postReducer.post,
     }
 );
 
@@ -120,6 +144,8 @@ const mapDispatchToProps = dispatch => bindActionCreators(
         getAllCategories,
         findByCategory,
         createPost,
+        findPostById,
+        setPostForm,
     }, 
 dispatch);
 

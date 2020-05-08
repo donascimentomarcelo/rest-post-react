@@ -3,6 +3,7 @@ import * as REDUCERS from './../helpers/reducers';
 const INITIAL_STATE = {
     buttonNew: true,
     posts: [],
+    post: null,
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -11,6 +12,12 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 posts: action.payload.data
+            }
+
+        case REDUCERS.POST_FETCHED :
+            return {
+                ...state,
+                post: action.payload.data
             }
 
         default:
