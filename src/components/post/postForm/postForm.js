@@ -64,7 +64,7 @@ export class PostForm extends Component {
         }
     }
 
-    readOnly = () => !this.props.location.pathname === CONST.POST_NEW;
+    readOnly = () => this.props.location.pathname !== CONST.POST_NEW;
 
     showButtonSubmit = (pristine, submitting) => {
         if (!this.readOnly()) {
