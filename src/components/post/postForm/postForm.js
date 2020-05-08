@@ -93,7 +93,8 @@ export class PostForm extends Component {
                             component="select" 
                             className="form-control"
                             name='categoryId' 
-                            onChange={this.findByCategory.bind(this)}>
+                            onChange={this.findByCategory.bind(this)}
+                            disabled={this.readOnly()}>
                                 <option value="">Selecione a categoria</option>
                                 {this.renderCategories()}
                         </Field>
@@ -102,7 +103,8 @@ export class PostForm extends Component {
                         <Field 
                             component="select" 
                             className="form-control"
-                            name='subcategoryId'>
+                            name='subcategoryId'
+                            disabled={this.readOnly()}>
                                 <option value="">Selecione a subcategoria</option>
                                 {this.renderSubcategories()}
                         </Field>
@@ -111,13 +113,15 @@ export class PostForm extends Component {
                         <Field 
                                 component="input" 
                                 className="form-control"
-                                name='title'/>
+                                name='title'
+                                disabled={this.readOnly()}/>
                     </FormGroupLabel>
                     <FormGroupLabel label='Descrição'>
                         <Field 
                                 component="textarea" 
                                 className="form-control"
-                                name='description'/>
+                                name='description'
+                                disabled={this.readOnly()}/>
                     </FormGroupLabel>
                     {this.showButtonSubmit(pristine, submitting)}
                 </form>
