@@ -8,6 +8,7 @@ import ContentHeader from '../../../layouts/header/contentHeader';
 import ContentOptions from '../../../layouts/body/contentOptions';
 import FormGroupLabel from '../../../layouts/form/formGroupLabel';
 import ButtonGroup from '../../../layouts/form/buttonGroup';
+import Comments from '../../comments/comments';
 
 import * as CONST from './../../../helpers/constants';
 
@@ -125,6 +126,8 @@ export class PostForm extends Component {
                     </FormGroupLabel>
                     {this.showButtonSubmit(pristine, submitting)}
                 </form>
+                <Comments
+                    comments={this.props.comments}/>
             </>
         )
     }
@@ -142,6 +145,7 @@ const mapStateToProps = (state) => (
         categories: state.categoryReducer.categories,
         subcategories: state.subcategoryReducer.subcategories,
         post: state.postReducer.post,
+        comments: state.postReducer.comments,
     }
 );
 

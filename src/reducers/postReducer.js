@@ -4,6 +4,7 @@ const INITIAL_STATE = {
     buttonNew: true,
     posts: [],
     post: null,
+    comments: []
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -17,7 +18,8 @@ export default (state = INITIAL_STATE, action) => {
         case REDUCERS.POST_FETCHED :
             return {
                 ...state,
-                post: action.payload.data
+                post: action.payload.data,
+                comments: action.payload.data.comments
             }
 
         default:
