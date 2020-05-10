@@ -7,8 +7,8 @@ import { toastr } from 'react-redux-toastr';
 import ContentHeader from '../../../layouts/header/contentHeader';
 import ContentOptions from '../../../layouts/body/contentOptions';
 import FormGroupLabel from '../../../layouts/form/formGroupLabel';
-import ButtonGroup from '../../../layouts/form/buttonGroup';
-import Comments from '../../comments/comments';
+import ButtonGroup from '../../../layouts/buttons/buttonGroup';
+import Comment from '../../comment/comment';
 
 import * as CONST from './../../../helpers/constants';
 
@@ -80,7 +80,7 @@ export class PostForm extends Component {
     }
 
     render() {
-        const { handleSubmit, pristine, submitting } = this.props;
+        const { handleSubmit, pristine, submitting, comments } = this.props;
         return (
             <>
                 <ContentHeader title={CONST.POST_CONTENT_HEADER} />
@@ -126,8 +126,9 @@ export class PostForm extends Component {
                     </FormGroupLabel>
                     {this.showButtonSubmit(pristine, submitting)}
                 </form>
-                <Comments
-                    comments={this.props.comments}/>
+                <Comment
+                    comments={comments}
+                    addComment={this.addComment}/>
             </>
         )
     }

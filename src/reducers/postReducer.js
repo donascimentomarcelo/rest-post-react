@@ -21,6 +21,12 @@ export default (state = INITIAL_STATE, action) => {
                 post: action.payload.data,
                 comments: action.payload.data.comments
             }
+            
+        case REDUCERS.ADD_COMMENT:
+            return { 
+                ...state ,
+                comments: [...state.comments, action.payload]
+            }
 
         default:
             return state;

@@ -69,7 +69,7 @@ export class SubcategoryForm extends Component {
     }
 
     render() {
-        const { handleSubmit, pristine, submitting } =  this.props;
+        const { handleSubmit, pristine, submitting, categories } =  this.props;
         return (
             <>
             <ContentHeader title={CONST.SUBCATEGORY_CONTENT_HEADER}/>
@@ -79,7 +79,7 @@ export class SubcategoryForm extends Component {
 
                 <form onSubmit={handleSubmit(this.submit.bind(this))}>
                     <SubcategoryFields
-                        categories={this.props.categories}/>
+                        categories={categories}/>
                     <ButtonGroup>
                         <button type="submit" className="btn btn-outline-secondary" disabled={pristine || submitting}>
                             Salvar
