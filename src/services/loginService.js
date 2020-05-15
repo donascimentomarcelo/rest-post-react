@@ -4,6 +4,12 @@ export function setToken(token) {
     return tokenValue;
 }
 
+export function setUserData(user) {
+  const userData = user ? user : null;
+  localStorage.setItem('user', JSON.stringify(userData))
+  return userData;
+}
+
 export function getToken() {
     try {
         const serializedState = localStorage.getItem('token');

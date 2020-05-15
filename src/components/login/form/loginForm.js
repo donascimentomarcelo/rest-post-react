@@ -7,13 +7,14 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import { login } from '../../../actions/loginAction'
 import { withRouter } from "react-router";
-import { setToken, isAuthenticated } from '../../../services/loginService';
+import { setToken, setUserData, isAuthenticated } from '../../../services/loginService';
 
 export class LoginForm extends Component {
 
     submit(login) {
         this.props.login(login)
-            .then(resp => {
+            .then((resp) => {
+                setUserData(resp.payload.data);
                 setToken(resp.payload.headers.authorization);
                 const { history } = this.props;
                 this.props.isAuthenticated()
