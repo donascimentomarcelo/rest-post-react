@@ -8,13 +8,14 @@ import CommentForm from './commentForm/commentForm'
 
 import './../../styles/comment.css'
 
-import { randId, getToday } from '../../services/utils'
+import { getToday } from '../../services/utils'
+import { getUserData } from '../../services/loginService'
 
 export class Comment extends Component {
     sendComment = comment => {
         const obj =  { 
-            id: randId(),
-            userName: 'Crane',
+            id: getUserData().id,
+            userName: getUserData().name,
             text: comment.text,
             createdAt: getToday(),
         }

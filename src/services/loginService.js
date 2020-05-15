@@ -22,6 +22,18 @@ export function getToken() {
       }
 }
 
+export function getUserData() {
+    try {
+        const serializedState = localStorage.getItem('user');
+        if (serializedState === null) {
+          return undefined;
+        }
+        return JSON.parse(serializedState);
+      } catch (err) {
+        return undefined;
+      }
+}
+
 export function isAuthenticated() {
     return {
         type: 'LOGGED',
