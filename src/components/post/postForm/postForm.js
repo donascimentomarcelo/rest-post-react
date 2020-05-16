@@ -80,6 +80,17 @@ export class PostForm extends Component {
         }
     }
 
+    showCommentForm = (comments) => {
+        if (this.readOnly()) {
+            return (
+                <Comment
+                    comments={comments}
+                    addComment={this.addComment}
+                    postId={this.props.match.params.id}/>
+            )
+        }
+    }
+
     render() {
         const { handleSubmit, pristine, submitting, comments } = this.props;
         return (
@@ -127,10 +138,7 @@ export class PostForm extends Component {
                     </FormGroupLabel>
                     {this.showButtonSubmit(pristine, submitting)}
                 </form>
-                <Comment
-                    comments={comments}
-                    addComment={this.addComment}
-                    postId={this.props.match.params.id}/>
+                {this.showCommentForm(comments)}
             </>
         )
     }

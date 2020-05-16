@@ -17,19 +17,20 @@ import './../../styles/comment.css'
 
 export class Comment extends Component {
     sendComment = comment => {
-        const obj = { 
+        const dto = { 
             userId: getUserData().id,
             userName: getUserData().name,
             text: comment.text,
             postId: this.props.postId
         }
-        this.props.createComment(obj)
-            .then(() => this.actionAfterCreateComment(obj));        
+        this.props.createComment(dto)
+            .then(() => this.actionAfterCreateComment(dto));        
     }
 
     actionAfterCreateComment = comment => {
         comment.createdAt = getToday();
         this.props.addComment(comment);
+        this.props.resetCommentForm();
     }
 
     render() {
