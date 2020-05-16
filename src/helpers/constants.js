@@ -36,6 +36,8 @@ export const POST_FORM                  = 'postForm';
 export const POST_SEARCH_FORM           = 'postSearchForm';
 export const COMMENT_FORM               = 'commentForm';
 
+export const COMMENTS                   = '/comments';
+
 export const YES                        = 'Sim';
 export const NO                         = 'Não';
 

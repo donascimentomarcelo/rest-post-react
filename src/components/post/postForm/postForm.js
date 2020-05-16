@@ -23,6 +23,7 @@ import {
 export class PostForm extends Component {
 
     componentWillMount = () => {
+        console.log(this.props)
         this.props.getAllCategories();
         this.findPostById();
     }
@@ -128,7 +129,8 @@ export class PostForm extends Component {
                 </form>
                 <Comment
                     comments={comments}
-                    addComment={this.addComment}/>
+                    addComment={this.addComment}
+                    postId={this.props.match.params.id}/>
             </>
         )
     }

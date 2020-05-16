@@ -1,26 +1,35 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { addComment } from '../../actions/commentAction'
+import { 
+    addComment, 
+    createComment, 
+    resetCommentForm 
+} from '../../actions/commentAction'
 
 import CommentList from './commentList/commentList'
 import CommentForm from './commentForm/commentForm'
 
-import './../../styles/comment.css'
-
 import { getToday } from '../../services/utils'
 import { getUserData } from '../../services/loginService'
 
+import './../../styles/comment.css'
+
 export class Comment extends Component {
     sendComment = comment => {
-        const obj =  { 
-            id: getUserData().id,
+        const obj = { 
+            userId: getUserData().id,
             userName: getUserData().name,
             text: comment.text,
-            createdAt: getToday(),
+            postId: this.props.postId
         }
-        this.props.addComment(obj)
-        
+        this.props.createComment(obj)
+            .then(() => this.actionAfterCreateComment(obj));        
+    }
+
+    actionAfterCreateComment = comment => {
+        comment.createdAt = getToday();
+        this.props.addComment(comment);
     }
 
     render() {
@@ -41,7 +50,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators(
     {
-        addComment
+        addComment,
+        createComment,
+        resetCommentForm,
     },
     dispatch
 );

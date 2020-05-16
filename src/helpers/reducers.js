@@ -29,7 +29,9 @@ export const SET_POST_MODAL                  = 'SET_POST_MODAL';
 export const SET_POST_SEARCH_LIST            = 'SET_POST_SEARCH_LIST';
 export const POST_FETCHED                    = 'POST_FETCHED';
 
-export const ADD_COMMENT                    = 'ADD_COMMENT';
+export const COMMENTS_FETCHED                = 'COMMENTS_FETCHED';
+
+export const ADD_COMMENT                     = 'ADD_COMMENT';
 
 
 
