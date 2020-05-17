@@ -8,7 +8,8 @@ import PostList from './postList/postList'
 import * as CONST from './../../helpers/constants'
 
 import { 
-    getAllPosts, 
+    getAllPosts,
+    addView,
 } from '../../actions/postAction'
 
 
@@ -18,12 +19,17 @@ export class Post extends Component {
 
     create = () => this.props.history.push(CONST.POST_NEW);
 
+    addView = postId => {
+        this.props.addView(postId);
+    }
+
     render() {
         return (
             <>
                 <PostList
                     create={this.create}
-                    posts={this.props.posts}/>
+                    posts={this.props.posts}
+                    addView={this.addView}/>
             </>
         )
     }
@@ -45,6 +51,7 @@ const mapStateToProps = (state) => (
 const mapDispatchToProps = dispatch => bindActionCreators(
     {
         getAllPosts,
+        addView,
     },
     dispatch
 );

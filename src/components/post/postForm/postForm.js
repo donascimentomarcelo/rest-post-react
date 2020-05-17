@@ -23,7 +23,6 @@ import {
 export class PostForm extends Component {
 
     componentWillMount = () => {
-        console.log(this.props)
         this.props.getAllCategories();
         this.findPostById();
     }

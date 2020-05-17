@@ -22,6 +22,8 @@ const PostBox = (props) => {
     
     const replaceUrl = value => value.replace(' ', '-').toLowerCase();
 
+    const addView = () => props.addView();
+
     return (
         <Grid cols={cols}>
             <div className='small-box bg-gray'>
@@ -32,7 +34,7 @@ const PostBox = (props) => {
                         votes={vote}/>
                 </div>
                 <div className="inner inner-align">
-                    <a href={`/posts/${id}/app-route/${replaceUrl(value)}`} className={value}>
+                    <a href={`/posts/${id}/app-route/${replaceUrl(value)}`} className={value} onClick={addView}>
                         <h3>{value}</h3>
                     </a>
                     <p className="text">{delimiter()}</p>

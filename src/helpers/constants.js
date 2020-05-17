@@ -25,6 +25,7 @@ export const POST_CREATED               = 'Post criada com sucesso!';
 export const POST_UPDATED               = 'Post atualizada com sucesso!';
 export const POST_SEARCH                = 'Pesquisar Posts';
 export const POST_CONTENT_HEADER        = 'Formulário de Post';
+export const ADD_VIEW                   = '/posts/addView';
 
 export const COMMENT_TITLE_FORM         = 'Novo Comentário';
 

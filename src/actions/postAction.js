@@ -28,6 +28,14 @@ export function findPostById(id) {
     }
 }
 
+export function addView(id) {
+    const req = Axios.get(`${ENV.API_URL}${CONST.ADD_VIEW}/${id}`);
+    return {
+        type: REDUCERS.ADD_VIEW,
+        payload: req
+    }
+}
+
 export function setPostForm(post) {
     return [
         initialize(CONST.POST_FORM, post)

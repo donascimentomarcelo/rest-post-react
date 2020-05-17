@@ -1,8 +1,8 @@
-import * as REDUCERS from './../helpers/reducers'
 import Axios from 'axios'
+import { initialize } from 'redux-form';
+import * as REDUCERS from './../helpers/reducers'
 import * as ENV from './../environment/environment'
 import * as CONST from './../helpers/constants'
-import { initialize } from 'redux-form';
 
 export function createComment(comment) {
     const req = Axios.post(`${ENV.API_URL}${CONST.COMMENTS}`, comment);

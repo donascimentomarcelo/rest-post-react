@@ -16,6 +16,7 @@ import { getUserData } from '../../services/loginService'
 import './../../styles/comment.css'
 
 export class Comment extends Component {
+    
     sendComment = comment => {
         const dto = { 
             userId: getUserData().id,

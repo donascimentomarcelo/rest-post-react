@@ -20,7 +20,8 @@ export class PostList extends Component {
                     text={post.description}
                     comments={post.comments}
                     view={post.view}
-                    vote={post.vote}/>
+                    vote={post.vote}
+                    addView={this.props.addView.bind(this, post.id)}/>
             )
         )
     }

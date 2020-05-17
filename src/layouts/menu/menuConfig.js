@@ -1,6 +1,6 @@
 import React from 'react'
-import './../../styles/menu.css';
 import MenuItem from './menuItem';
+import './../../styles/menu.css';
 
 const MenuConfig = props => {
     return (
