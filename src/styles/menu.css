@@ -39,7 +39,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     height: 743px;
 }
 
-.sidebar-menu, .menu-config, .main-sidebar .user-panel, .sidebar-menu>li.header {
+.sidebar-menu, .main-sidebar .user-panel, .sidebar-menu>li.header {
     white-space: nowrap;
     overflow: hidden;
 }
@@ -63,7 +63,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 .sidebar-menu, .menu-config, .main-sidebar .user-panel, .sidebar-menu>li.header, .menu-config>li.header {
     white-space: nowrap;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .sidebar-menu,  .menu-config {
