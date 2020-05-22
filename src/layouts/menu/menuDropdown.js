@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
+
+import { setToken, setUserData} from './../../services/loginService'
+
 import './../../styles/menuDropdown.css';
 
 export class MenuDropdown extends Component {
 
-    constructor() {
-        super();
-
+    constructor(props) {
+        super(props);
+        console.log(props)
         this.state = { showMenu: false };
 
         this.showMenu = this.showMenu.bind(this);
@@ -13,7 +16,10 @@ export class MenuDropdown extends Component {
     }
 
     showMenu = event => {
-        this.setState({ showMenu: !this.state.showMenu });
+        // this.setState({ showMenu: !this.state.showMenu });
+        this.setState({ showMenu: true }, () => {
+            document.addEventListener('click', this.closeMenu);
+        });
     }
 
     closeMenu = event => {
@@ -26,19 +32,31 @@ export class MenuDropdown extends Component {
 
     metodo = () => this.state.showMenu ? 'dropup-content-show' : 'dropup-content';
 
+    logout = () => {
+        setToken(null);
+        setUserData(null);
+    }
+
+    redirectToUserAccessApp = () => {}
+
+    redirectToFavorites = () => {}
+
     dropDown = () => {
         return (
             <div className="dropup">
                 <ul className={this.metodo()}
                     ref={(element) => this.dropdownMenu = element}>
                     <li>
-                        <i>Menu item 1</i>
+                         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                        <a href='/' onClick={this.logout}><i>Sair</i></a>
                     </li>
                     <li>
-                        <i>Menu item 2</i>
+                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                        <a href='#' onClick={this.redirectToUserAccessApp}><i>Gerenciar Conta</i></a>
                     </li>
                     <li>
-                        <i>Menu item 3</i>
+                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                        <a href='#' onClick={this.redirectToFavorites}><i>Favoritos</i></a>
                     </li>
                 </ul>
             </div>

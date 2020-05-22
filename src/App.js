@@ -31,13 +31,17 @@ export class App extends Component {
   showSidebar = () => this.props.isLogged ? <Sidebar/> :  null;
 
   showRightbar = () => this.props.isLogged ? <Rightbar/> :  null;
+
+  showHeader = () => this.props.isLogged ? <Header/> :  null;
+
+  showContentWrapperClass = () => this.props.isLogged ? "content-wrapper" : null;
   
   render() {
     return (
       <div className="wrapper">
-        <Header/>
+        {this.showHeader()}
         {this.showSidebar()}
-          <div className="content-wrapper">
+          <div className={this.showContentWrapperClass()}>
               <Routes/>
           </div>
         {this.showRightbar()}
