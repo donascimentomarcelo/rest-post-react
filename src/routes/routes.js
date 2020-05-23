@@ -27,7 +27,7 @@ const Routes = props => (
             <PrivateRoute path='/posts/list' component={Post}/>
             <PrivateRoute path='/posts/new' component={PostForm}/>
             <PrivateRoute path='/posts/:id/app-route/:route' component={PostForm}/>
-            <Redirect from='*' to='/'/>
+            <Redirect from='*' to='/dashboard'/>
         </Switch>
     </BrowserRouter>
 );
