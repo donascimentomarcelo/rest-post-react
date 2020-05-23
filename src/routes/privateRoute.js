@@ -10,7 +10,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
     render={ props => 
         rest.isLogged
         ? ( <Component { ...props }/> )
-        : ( <Redirect from='*' to='/'/> )
+        : ( <Redirect from='*' to='/dashboard'/> )
     }/>
 )
 

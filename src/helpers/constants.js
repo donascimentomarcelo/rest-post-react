@@ -39,6 +39,8 @@ export const COMMENT_FORM               = 'commentForm';
 
 export const COMMENTS                   = '/comments';
 
+export const DASHBOARD                  = '/dashboard';
+
 export const YES                        = 'Sim';
 export const NO                         = 'Não';
 

@@ -8,26 +8,22 @@ export class MenuDropdown extends Component {
 
     constructor(props) {
         super(props);
-        console.log(props)
         this.state = { showMenu: false };
 
         this.showMenu = this.showMenu.bind(this);
         this.closeMenu = this.closeMenu.bind(this);
     }
 
+    componentDidMount() {
+        // document.addEventListener('click', this.closeMenu, true);
+    }
+
     showMenu = event => {
-        // this.setState({ showMenu: !this.state.showMenu });
-        this.setState({ showMenu: true }, () => {
-            document.addEventListener('click', this.closeMenu);
-        });
+        this.setState({ showMenu: !this.state.showMenu });
     }
 
     closeMenu = event => {
-        if (!this.dropdownMenu.contains(event.target)) {
-            this.setState({ showMenu: false }, () => {
-                document.addEventListener('click', this.closeMenu);
-            });
-        }
+        this.setState({ showMenu: false });
     }
 
     metodo = () => this.state.showMenu ? 'dropup-content-show' : 'dropup-content';
@@ -44,19 +40,18 @@ export class MenuDropdown extends Component {
     dropDown = () => {
         return (
             <div className="dropup">
-                <ul className={this.metodo()}
-                    ref={(element) => this.dropdownMenu = element}>
+                <ul className={this.metodo()}>
                     <li>
                          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                         <a href='/' onClick={this.logout}><i>Sair</i></a>
                     </li>
                     <li>
                         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                        <a href='#' onClick={this.redirectToUserAccessApp}><i>Gerenciar Conta</i></a>
+                        <a href='/dashboard' onClick={this.redirectToUserAccessApp}><i>Gerenciar Conta</i></a>
                     </li>
                     <li>
                         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                        <a href='#' onClick={this.redirectToFavorites}><i>Favoritos</i></a>
+                        <a href='/dashboard' onClick={this.redirectToFavorites}><i>Favoritos</i></a>
                     </li>
                 </ul>
             </div>
